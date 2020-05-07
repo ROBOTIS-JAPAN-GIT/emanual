@@ -15,51 +15,51 @@ sidebar:
 
 > OpenCR 1.0
 
-# [Introduction](#introduction)
-OpenCR1.0 is developed for ROS embedded systems to provide completely open-source hardware and software.  
-Everything about the board; Schematics, PCB Gerber, BOM and the firmware source code for the TurtleBot3 and OP3 are free to distribute under open-source licenses for users and the ROS community.  
-The STM32F7 series chip inside the OpenCR1.0 board is based on a very powerful ARM Cortex-M7 with floating point unit.  
-The development environment for OpenCR1.0 is wide open from Arduino IDE and Scratch for young students to traditional firmware development for the expert.
+# [イントロダクション](#introduction)
+OpenCR1.0は、完全にオープンソースのハードウェアとソフトウェアを提供するために、ROSの組み込みシステム用に開発されました。  
+ボードの回路図、PCBカバー、BOM、TurtleBot3とOP3用のファームウェアのソースコードなど、ボードに関するすべてのものは、ユーザーとROSコミュニティのためにオープンソースライセンスのもとで無料で配布されています。  
+OpenCR1.0ボード内のSTM32F7シリーズチップは、浮動小数点演算ユニットを搭載した非常に強力なARM Cortex-M7をベースにしています。  
+OpenCR1.0の開発環境は、若い学生向けのArduino IDEやScratchから、エキスパート向けの従来のファームウェア開発まで幅広く対応しています。  
 
-# [Specifications](#specifications)
+# [仕様表](#specifications)
 
-| Items                | Specifications                                                                                                                                                                                                                            |
+| 項目                | 仕様                                                                                                                                                                                                                            |
 |:---------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Microcontroller      | STM32F746ZGT6 / 32-bit ARM Cortex®-M7 with  FPU (216MHz, 462DMIPS)<br />[Reference Manual], [Datasheet]                                                                                                                                   |
-| Sensors              | (**Discontinued**) Gyroscope 3Axis, Accelerometer 3Axis, Magnetometer 3Axis (MPU9250)<br /> (**New**) 3-axis Gyroscope, 3-Axis Accelerometer, A Digital Motion Processor™ (ICM-20648)                                            |
-| Programmer           | ARM Cortex 10pin JTAG/SWD connector<br />USB Device Firmware Upgrade (DFU)<br />Serial                                                                                                                                                    |
-| Digital I/O          | 32 pins (L 14, R 18) *Arduino connectivity<br />5Pin OLLO x 4<br />GPIO x 18 pins<br />PWM x 6<br />I2C x 1<br />SPI x 1                                                                                                                  |
-| Analog INPUT         | ADC Channels (Max 12bit) x 6                                                                                                                                                                                                              |
-| Communication Ports  | USB x 1 (Micro-B USB connector/USB 2.0/Host/Peripheral/OTG)<br />TTL x 3 ([B3B-EH-A] / DYNAMIXEL)<br />RS485 x 3 ([B4B-EH-A] / DYNAMIXEL)<br />UART x 2 ([20010WS-04])<br />CAN x 1 ([20010WS-04])                                        |
-| LEDs and buttons     | LD2 (red/green) : USB communication<br />User LED x 4 : LD3 (red), LD4 (green), LD5 (blue)<br />User button  x 2<br />Power LED : LD1 (red, 3.3 V power on)<br />Reset button x 1 (for power reset of board)<br />Power on/off switch x 1 |
-| Input Power Sources  | 5 V (USB VBUS), 7-24 V (Battery or SMPS)<br />Default battery : LI-PO 11.1V 1,800mAh 19.98Wh<br />Default SMPS : 12V 4.5A<br />External battery Port for RTC (Real Time Clock) ([Molex 53047-0210])                                       |
-| Output Power Sources | <sup>`*`</sup>12V max 4.5A([SMW250-02])<br /><sup>`*`</sup>5V max 4A([5267-02A]), 3.3V@800mA([20010WS-02])                                                                                                                                |
-| Dimensions           | 105(W) X 75(D) mm                                                                                                                                                                                                                         |
-| Weight               | 60g                                                                                                                                                                                                                                       |
+| マイクロコントローラー      | STM32F746ZGT6 / 32-bit ARM Cortex®-M7 with  FPU (216MHz, 462DMIPS)<br />[Reference Manual], [Datasheet]                                                                                                                                   |
+| センサー              | (**廃止**) 三軸ジャイロ, 三軸加速度, 三軸磁気センサ (MPU9250)<br /> (**新設**) 三軸ジャイロ, 3軸加速度, デジタルモーションプロセッサー™ (ICM-20648)                                            |
+| プログラマー           | ARM Cortex 10ピン JTAG/SWD コネクター<br />USBデバイスファームウェア アップグレード (DFU)<br />シリアル                                                                                                                                                    |
+| デジタルI/O          | 32ピン (L 14, R 18) *Arduino connectivity<br />5ピン OLLO x 4<br />GPIO x 18ピン<br />PWM x 6<br />I2C x 1<br />SPI x 1                                                                                                                  |
+| アナログ入力         | ADCチャンネル (最大 12bit) x 6                                                                                                                                                                                                              |
+| 通信ポート  | USB x 1 (マイクロUSBタイプB/USB 2.0/Host/Peripheral/OTG)<br />TTL x 3 ([B3B-EH-A] / DYNAMIXEL)<br />RS485 x 3 ([B4B-E名称H-A] / DYNAMIXEL)<br />UART x 2 ([20010WS-04])<br />CAN x 1 ([20010WS-04])                                        |
+| LEDとボタン     | LD2 (red/green) : USB通信<br />ユーザーLED x 4 : LD3 (赤), LD4 (緑), LD5 (青)<br />ユーザーボタン  x 2<br />パワーLED : LD1 (赤, 3.3 V 電源オン)<br />リセットボタン x 1 (ボードの電源リセット用)<br />電源オン/オフ スイッチ x 1 |
+| 入力電源  | 5 V (USB VBUS), 7-24 V (バッテリーもしくはSMPS)<br />標準バッテリー : LI-PO 11.1V 1,800mAh 19.98Wh<br />標準SMPS : 12V 4.5A<br />RTC（リアルタイムクロック）用外部バッテリー ([Molex 53047-0210])                                       |
+| 出力電源 | <sup>`*`</sup>12V 最大 4.5A([SMW250-02])<br /><sup>`*`</sup>5V 最小 4A([5267-02A]), 3.3V@800mA([20010WS-02])                                                                                                                                |
+| 寸法           | 105(幅) X 75(奥行き) mm                                                                                                                                                                                                                         |
+| 重量               | 60g                                                                                                                                                                                                                                       |
 
 
-**NOTE**: MPU9250 sensor has been replaced with ICM-20648, since 2020, as MPU9250 is discontinued to produce.
+**注釈**: 2020年以降、MPU9250センサーはICM-20648に置き換えられました。MPU9250は生産が中止されているためです。  
 {: .notice}
 
-<sup>`*`</sup> 5V power source is supplied from regulated 12V output.
+<sup>`*`</sup> 5V電源は、安定化された12V出力から供給されます。  
 {: .notice}
 
-**NOTE** : Hot swap power switch between "shore power"(12V, 4.5A SMPS) and "mobile power"(battery) from OpenCR1.0 board enables UPS(Uninterrupted Power Supply) feature.
+**注釈** : OpenCR1.0ボードからの"ショアパワー"(12V, 4.5A SMPS)と"モバイルパワー"(バッテリー)のホットスワップ電源切り替えにより、UPS(無停電電源)機能を有効にすることができます。  
 {: .notice}
 
-# [Layout/Pin Map](#layoutpin-map)
+# [レイアウト/ピン配置](#layoutpin-map)
 
 ![](/assets/images/parts/controller/opencr10/opencr_pinout.png)
 
 {% include en/dxl/pinout_warning.md %}
 
-## [Arduino Connector](#arduino-connector)
-OpenCR includes a connector that is compatible with Arduino Uno pinmap.  
-The pins 0 to 21 are the same pin as the Arduino Uno, and thereafter they are mapped to the pins added to OpenCR.
+## [Arduinoコネクター](#arduino-connector)
+OpenCRにはArduino Unoのピンに対応したコネクタが付属しています。  
+0～21番のピンはArduino Unoと同じピンで、それ以降はOpenCRに追加されたピンにマッピングされています。  
 
 ![](/assets/images/parts/controller/opencr10/arduino_pinmap_01.png)
 
-| Pin No. | Function |     1     |     2     |   3    | etc  |
+| ピン番号 |    関数   |     1     |     2     |   3    | etc  |
 |:-------:|:--------:|:---------:|:---------:|:------:|:----:|
 |    0    | UART RXD | UART6_RX  |           |        | `FT` |
 |    1    | UART TXD | UART6 TX  |           |        | `FT` |
@@ -84,15 +84,15 @@ The pins 0 to 21 are the same pin as the Arduino Uno, and thereafter they are ma
 |   20    |   ADC    |    A4     |           |        | `FT` |
 |   21    |   ADC    |    A5     |           |        | `FT` |
 
-`FT` pins are 5V tolerant except when in analog mode. The maximum injected current on FT pins are **-5mA**. Also total output current sunk / sourced by sum of all I/O pins are **120mA / -120mA** respectively.
+`FT`ピンはアナログモード時を除き、5Vトレラントです。FTピンの最大注入電流は **-5mA** です。また、全I/O端子を合計した総出力電流は、**120mA / -120mA** となります。  
 {: .notice}
 
-## [User LED](#user-led)
-The OpenCR additional LEDs consist of four LEDs and are mapped to Arduino pin 22-25.
+## [ユーザーLED](#user-led)
+OpenCRの追加LEDは4つのLEDで構成されており、Arduinoのピン22-25にマッピングされています。  
 
 ![](/assets/images/parts/controller/opencr10/arduino_pinmap_03.png)
 
-| Name    | Arduino Pin | Pin Name         |
+|  名称    | Arduinoピン  | ピンの名称         |
 |:--------|:------------|:-----------------|
 | USER1   | 22          | BDPIN_LED_USER_1 |
 | USER2   | 23          | BDPIN_LED_USER_2 |
@@ -101,21 +101,21 @@ The OpenCR additional LEDs consist of four LEDs and are mapped to Arduino pin 22
 | STS     | 36          | BDPIN_LED_STATUS |
 | Arduino | 13          | LED_BUILTIN      |
 
-## [Dip Switch](#dip-switch)
+## [ディップスイッチ](#dip-switch)
 
 ![](/assets/images/parts/controller/opencr10/arduino_pinmap_04.png)
 
-| Arduino Pin | Pin Name       |
+| Arduinoピン | ピンの名称       |
 |:------------|:---------------|
 | 26          | BDPIN_DIP_SW_1 |
 | 27          | BDPIN_DIP_SW_2 |
 
 ## [GPIO](#pgio)
-It has an 18-pin common GPIO expansion connector and is mapped to the GPIO pin of the Arduino. The pin number below is the arduino pin number.
+18ピンの共通GPIO拡張コネクタを持ち、ArduinoのGPIOピンにマッピングされています。下のピン番号はArduinoのピン番号です。  
 
 ![](/assets/images/parts/controller/opencr10/arduino_pinmap_05.png)
 
-| Pin Number | Arduino Pin | Pin Name      | Pin Number | Arduino Pin | Pin Name      | etc  |
+| ピン番号 | Arduinoピン | ピンの名称      | ピン番号 | Arduinoピン | ピンの名称      | etc  |
 |:-----------|:------------|:--------------|:-----------|:------------|:--------------|:-----|
 | 1          | -           | 3.3V          | 2          | -           | GND           | -    |
 | 3          | 50          | BDPIN_GPIO_1  | 4          | 51          | BDPIN_GPIO_2  | `FT` |
@@ -128,29 +128,29 @@ It has an 18-pin common GPIO expansion connector and is mapped to the GPIO pin o
 | 17         | 64          | BDPIN_GPIO_15 | 18         | 65          | BDPIN_GPIO_16 | `FT` |
 | 19         | 66          | BDPIN_GPIO_17 | 20         | 67          | BDPIN_GPIO_18 | `FT` |
 
-`FT` pins are 5V tolerant except when in analog mode. The maximum injected current on FT pins are **-5mA**. Also total output current sunk / sourced by sum of all I/O pins are **120mA / -120mA** respectively.
+`FT`ピンはアナログモード時を除き、5Vトレラントです。FTピンの最大注入電流 **-5mA** です。また、全I/Oピンを合計した総出力電流は、 **120mA / -120mA** となります。  
 {: .notice}
 
-**NOTE** : Typical pull-up / pull-down resistance is 40k&Omega;
+**注釈** : プルアップ/プルダウンの代表的な抵抗は40kΩです。  
 {: .notice}
 
-## [ROBOTIS 5-pin Connector](#robotis-5-pin-connector)
+## [ROBOTIS 5-ピン コネクター](#robotis-5-pin-connector)
 
 ![](/assets/images/parts/controller/opencr10/arduino_pinmap_06.png)
 
-## [Push Switch](#push-switch)
+## [プッシュスイッチ](#push-switch)
 
 ![](/assets/images/parts/controller/opencr10/arduino_pinmap_08.png)
 
-| Arduino Pin | Pin Name        |
+| Arduinoピン | ピンの名称        |
 |:------------|:----------------|
 | 34          | BDPIN_PUSH_SW_1 |
 | 35          | BDPIN_PUSH_SW_2 |
 
-## [External Interrupt](#external-interrupt)
-External interrupts are assigned to the following pins and can be used with *attachInterrupt(EXTI_Pin, callbackFunction, Mode)* macro.
+## [外部割り込み](#external-interrupt)
+外部割込みは以下のピンに割り当てられており、 *attachInterrupt(EXTI_Pin, callbackFunction, Mode)* マクロで使用することができます。  
 
-| EXTI Pin | Arduino Pin | Pin Name    |
+| EXTI ピン | Arduinoピン | ピンの名称    |
 |:---------|:------------|:------------|
 | 0        | 2           | -           |
 | 1        | 3           | TIM3_CH1    |
@@ -176,7 +176,7 @@ void changeDirection_EXIT_0(void){
 
 ## [UART(Serial)](#uartserial)
 
-| Class Instance      | Arduino Pin  | Hardware |
+| Classインスタンス     | Arduinoピン   |ハードウェア|
 |:--------------------|:-------------|:---------|
 | Serial              | USB          | USB      |
 | Serial1             | 0(RX), 1(TX) | USART6   |
@@ -184,11 +184,11 @@ void changeDirection_EXIT_0(void){
 | Serial3             | DXL Port     | USART3   |
 | Serial4 (SerialBT2) | UART2        | UART8    |
 
-**CAUTION**: Since Serial3 is used for DYNAMIXEL, its usage differs from other serial. (For more information, please refer to DYNAMIXELWorkbench.)
+**注意**: DYNAMIXELではSerial3を使用しているため、他のシリアルとは使い方が異なります。（詳細はDYNAMIXEL Workbenchを参照してください）。  
 {: .notice--warning}
 
 
-## [Pin Definition](#pin-definition)
+## [ピンの定義](#pin-definition)
 
 ```c++
 extern const Pin2PortMapArray g_Pin2PortMapArray[]=
@@ -291,10 +291,10 @@ extern const Pin2PortMapArray g_Pin2PortMapArray[]=
 
 # [Arduino IDE](#arduino-ide)
 
-## [Install on Linux](#install-on-linux)
+## [Linuxにインストール](#install-on-linux)
 
-### [USB Port Settings](#usb-port-settings)
-Make the OpenCR USB port be able to upload the Arduino IDE program without root permission.
+### [USBポート](#usb-port-settings)
+OpenCRのUSBポートにArduino IDEプログラムをroot権限無しでアップロードできるようにしました。  
 
 ```bash
 $ wget https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/99-opencr-cdc.rules
@@ -305,8 +305,8 @@ $ sudo udevadm trigger
 
 ![](/assets/images/platform/turtlebot3/preparation/7_1_1_usb_port_setting.png)
 
-### [Compiler Settings](#compiler-settings)
-Since the OpenCR libraries is built for 32 bit platform, 64 bit PC needs the 32 bit compiler relevants for the ArduinoIDE.
+### [コンパイラの設定](#compiler-settings)
+OpenCRライブラリは、32ビットプラットフォーム用に構築されているため、64ビットPCではArduinoIDE用の32ビットコンパイラが必要になります。  
 
 ```bash
 $ sudo apt-get install libncurses5-dev:i386
@@ -314,19 +314,19 @@ $ sudo apt-get install libncurses5-dev:i386
 
 ![](/assets/images/platform/turtlebot3/preparation/7_1_2_compiler_settings.png)
 
-### [Install Arduino IDE(Linux)](#install-arduino-idelinux)
-Download the latest version of Arduino IDE from the official arduino homepage, and install it. Currently, the OpenCR will be on service in the version 1.6.4 or later.
+### [Arduino IDE(Linux)のインストール](#install-arduino-idelinux)
+Arduino公式ホームページから最新版のArduino IDEをダウンロードして、インストールします。現在、OpenCRはバージョン1.6.4.以降でサービス開始予定です。  
 
 [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software)
 
-Then, extract the downloaded file to the desired folder and execute the installation file from the terminal. In this case, the example shown below makes the folder tools in the user’s top folder (~/). This folder will act as the Arduino IDE folder.
+そして、ダウンロードしたファイルを任意のフォルダに展開し、ターミナルからインストールファイルを実行します。この場合、以下の例ではユーザーの一番上のフォルダ(~/)にtoolsというフォルダを作ります。このフォルダがArduino IDEフォルダとして機能します。  
 
 ```bash
 $ cd ~/tools/arduino-1.6.4
 $ ./install.sh
 ```
 
-Set the file path of installed Arduino IDE as an absolute path named PATH in the bashrc file. Here recommends to use gedit editor. (Use another editor, if necessary.) Finally, source it to apply the changes.
+インストールしたArduino IDEのファイルパスを、bashrcファイルのPATHという絶対パスに設定します。ここでは、geditエディタの使用を推奨します。(必要に応じて他のエディタを使用してください。) 最後にソースを作成して変更を適用します。  
 
 ```bash
 $ gedit ~/.bashrc
@@ -334,8 +334,8 @@ $ export PATH=$PATH:$HOME/tools/arduino-1.6.4
 $ source ~/.bashrc
 ```
 
-### [Run Arduino IDE(Linux)](#run-arduino-idelinux)
-To run the Arduino IDE on Linux platform, type into the terminal as follows.
+### [Arduino IDE(Linux)の実行](#run-arduino-idelinux)
+Linuxプラットフォーム上でArduino IDEを実行するには、ターミナルに以下のように入力します。  
 
 ```bash
 $ arduino
@@ -343,10 +343,10 @@ $ arduino
 
 ![](/assets/images/platform/turtlebot3/preparation/ide0.png)
 
-### [Porting to Arduino IDE(Linux)](#porting-to-arduino-idelinux)
+### [Arduino IDE(Linux)へのポーティング](#porting-to-arduino-idelinux)
 
-#### Preferences
-After Arduino IDE is run, click File → Preferences in the top menu of the IDE. When the Preferences window appears, copy and paste following link to the Additional Boards Manager URLs textbox. (This step may take about 20 min.)
+#### 環境設定
+Arduino IDEを起動した後に、IDEのトップメニューにある「ファイル」→「環境設定」をクリックします。環境設定ウィンドウが表示されたら、以下のリンクをコピーして、Additional Boards Manager URLsのテキストボックスに貼り付けます。(この作業には約20分かかります)  
 
 ```
 https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_release/package_opencr_index.json
@@ -354,61 +354,61 @@ https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_relea
 
 ![](/assets/images/platform/turtlebot3/preparation/ide1.png)
 
-#### Install the OpenCR package via Boards Manager
-Click Tools → Board → Boards Manager.
+#### ボードマネージャーを使ってOpenCRパッケージをインストール
+ツール → ボード → ボードマネージャーをクリックします。  
 
 ![](/assets/images/platform/turtlebot3/preparation/ide2.png)
 
-Type OpenCR into the textbox to find the OpenCR by ROBOTIS package. After it finds out, click Install.
+テキストボックスにOpenCRと入力して、OpenCR by ROBOTISパッケージを検索します。見つかったら、インストールをクリックします。  
 
 ![](/assets/images/platform/turtlebot3/preparation/ide3.png)
 
-After the installation, “INSTALLED” will be appeared.
+インストールが終わると「INSTALLED」と表示されます。  
 
 ![](/assets/images/platform/turtlebot3/preparation/ide4.png)
 
-See if OpenCR Board is now on the list of Tools → Board. Click this to import the OpenCR Board source.
+ツール → ボードのリストにOpenCRボードが表示されるようになったかどうかを確認します。これをクリックして、OpenCRボードのソースをインポートします。  
 
 ![](/assets/images/platform/turtlebot3/preparation/ide5.png)
 
-#### Port setting
-This step shows the port setting for the program uploads. The OpenCR should be connected to the PC and the OpenCR via the USB ports.
+#### ポート設定
+このステップでは、プログラムをアップロードするためのポート設定を行います。パソコンとOpenCRをUSBポートで接続してください。  
 
-Select Tools → Port → /dev/ttyACM0.
+ツール → ポート → /dev/ttyACM0を選択してください。  
 
-**WARNING** : The last digit value `0` in the string `/dev/ttyACM0` might be different depend on the USB connection environment.
+**警告** : 文字列 `/dev/ttyACM0` の下一桁の値 `0` は USB 接続環境によって異なる場合があります。  
 {: .notice--warning}
 
 ![](/assets/images/platform/turtlebot3/preparation/ide6.png)
 
-### [Remove Modemmanager](#remove-modemmanager)
+### [モデムマネージャの削除](#remove-modemmanager)
 
-After programming with the Arduino IDE and uploading the program to the OpenCR, the OpenCR will be restarted and be reconnected. At the same moment, the modem-related packages of the Linux will send the AT command to manage the device. Thus indicates an connection error on the OpenCR, so this step should be done previously.
+Arduino IDEでプログラミングを行い、OpenCRにプログラムをアップロードすると、OpenCRが再起動して再接続されます。同時に、Linuxのモデム関連のパッケージから、デバイスを管理するためのATコマンドが送信されます。このように、OpenCR上で接続エラーが発生していることを示していますので、このステップは事前に行っておく必要があります。　　
 
 ```bash
 $ sudo apt-get purge modemmanager
 ```
 
-## [Install on Mac](#install-on-mac)
+## [Macにインストール](#install-on-mac)
 
-### [Install Arduino IDE(Mac)](#install-arduino-idemac)
+### [Arduino IDE(Mac)のインストール](#install-arduino-idemac)
 
-Download the latest version of Arduino IDE from the official arduino homepage, and install it. Currently, the OpenCR will be on service in the version 1.6.4 or later.
+Arduinoの公式ホームページから最新版のArduino IDEをダウンロードしてインストールします。現在、OpenCRはバージョン1.6.4以降でサービスを開始する予定です。
 
 [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software)
 
-### [Run Arduino IDE(Mac)](#run-arduino-idemac)
+### [Arduino IDE(Mac)の実行](#run-arduino-idemac)
 
-To run the Arduino IDE on Mac platform, click the Arduino IDE icon as follows.
+MacプラットフォームでArduino IDEを実行するには、以下のようにArduino IDEのアイコンをクリックします。  
 
 ![](/assets/images/parts/controller/opencr10/arduino_mac_01.png)
 
 ![](/assets/images/parts/controller/opencr10/arduino_mac_02.png)
 
-### [Porting to Arduino IDE(Mac)](#porting-to-arduino-idemac)
+### [Arduino IDE(Mac)へのポーティング](#porting-to-arduino-idemac)
 
-#### Preferences
-After Arduino IDE is run, click File → Preferences in the top menu of the IDE. When the Preferences window appears, copy and paste following link to the Additional Boards Manager URLs textbox. (This step may take about 20 min.)
+#### 環境設定
+Arduino IDEを起動したら、IDEのトップメニューにある「ファイル」→「環境設定」をクリックします。環境設定ウィンドウが表示されたら、以下のリンクをコピーして、Additional Boards Manager URLsのテキストボックスに貼り付けます。(この作業には約20分かかります)  
 
 ```
 https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_release/package_opencr_index.json
@@ -416,23 +416,23 @@ https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_relea
 
 ![](/assets/images/parts/controller/opencr10/arduino_mac_03.png)
 
-#### Install the OpenCR package via Boards Manager
-Click Tools → Board → Boards Manager.
-
+#### ボードマネージャーを使ってOpenCRパッケージをインストール
+ツール → ボード→ ボードマネージャーをクリックします。  
+実行 
 ![](/assets/images/parts/controller/opencr10/arduino_mac_04.png)
 
-Type OpenCR into the textbox to find the OpenCR by ROBOTIS package. Install of the OpenCR package.  
-After the installation, “INSTALLED” will be appeared.
+テキストボックスにOpenCRと入力して、OpenCR by ROBOTISパッケージを探します。OpenCRパッケージをインストールします。  
+インストールが終わると「INSTALLED」と表示されます。  
 
-See if OpenCR Board is now on the list of Tools → Board. Click this to import the OpenCR Board source.
+ツール → ボードの一覧にOpenCR Boardが表示されるようになったかどうかを確認してください。これをクリックして、OpenCR Boardのソースをインポートします。  
 
 ![](/assets/images/parts/controller/opencr10/arduino_mac_05.png)
 
-#### Port setting
-This step shows the port setting for the program uploads. The OpenCR should be connected to the PC and the OpenCR via the USB ports.  
-Select Tools → Port → /dev/cu.usbmodem1411
+#### ポート設定
+このステップでは、プログラムアップロードをするためのポート設定を行います。パソコンとOpenCRをUSBポートで接続します。  
+ ツール → ポート → /dev/cu.usbmodem1411を選択します。
 
-**CAUTION** : The value of `/dev/cu.usbmodem1411` may be different depending on the environment connected to the PC.
+**注意** : PSの接続されている環境によっては、 `/dev/cu.usbmodem1411` 値が異なる場合があります。  
 {: .notice--warning}
 
 ![](/assets/images/parts/controller/opencr10/arduino_mac_06.png)

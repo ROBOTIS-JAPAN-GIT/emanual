@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: ros_2
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/ros2_setup/
+permalink: /docs/jp/platform/turtlebot3/ros2_setup/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -15,39 +15,40 @@ page_number: 29
 
 <div style="counter-reset: h1 15"></div>
 
-# [[ROS 2] Setup](#ros-2-setup)
+# [[ROS 2]セットアップ](#ros-2-setup)
 
 {% capture notice_01 %}
-**NOTE**:
-- The test is done on `Ubuntu 18.04` and `ROS Dashing Diademata`.
-- These instructions are supposed to be performed with a remote PC and SBC in TurtleBot.
-- You can ask any questions on [ROS Answers](https://answers.ros.org/questions/) if you are in touble to follow the instruction.
+**注釈**:
+- `Ubuntu 18.04`および`ROS Dashing Diademata`でテスト済みです。
+- これらの手順は、TurtleBotのリモートPCとSBCで実行してください。
+- 手順に不明な事があった場合は、[ROS Answers](https://answers.ros.org/questions/)で質問できます。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
-## PC Setup
+## PCセットアップ
 
-### Install Ubuntu
+### Ubuntuのインストール
 
-To setup ROS (Robot Operating System) on Remote PC, install Ubuntu 18.04 on **Remote PC**.
+リモートPCにROS（ロボットオペレーティングシステム）をセットアップするには、**リモートPC**にUbuntu 18.04をインストールします。
 
-- [Download Ubuntu 18.04](http://releases.ubuntu.com/18.04/)
-- [Tutorial - Install Ubuntu Desktop](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0)
+- [Ubuntu 18.04のダウンロード](http://releases.ubuntu.com/18.04/)
+- [チュートリアル - Ubuntuデスクトップのインストール](https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0)
 
-### Install ROS 2
+### ROS 2のインストール
 
 ![](/assets/images/platform/turtlebot3/logo_ros.png)
 
-As TurtleBot3 operates on ROS, it requies to install `ros-dashing-desktop` debian packages for ROS 2 (Dashing Diademata) on **Remote PC**. Following link will guide on installing ROS 2.
+TurtleBot3はROSで動作するので、**リモートPC**にROS 2（Dashing Diademata）の `ros-dashing-desktop` debianパッケージをインストールする必要があります。
+次のリンクは、ROS 2のインストールに関するガイドです。
 
-- [ROS 2 Installation Guide](https://index.ros.org/doc/ros2/Installation/Dashing/)
+- [ROS 2のインストールガイド](https://index.ros.org/doc/ros2/Installation/Dashing/)
 
-### Install ROS 2 Dependent Packages
+### ROS 2の依存パッケージのインストール
 
-**[Remote PC]**
+**[リモートPC]**
 
-1. Open a terminal on **Remote PC**.
-2. Use the following commands.
+1. **Remote PC**でターミナルを開きます。
+2. 下記のコマンドを入力します。
 ```bash
 # Install Colcon
 $ sudo apt install python3-colcon-common-extensions
@@ -76,9 +77,9 @@ $ sudo apt install ros-dashing-nav2-bringup
 $ sudo apt install python3-vcstool
 ```
 
-### Install TurtleBot3 Packages 
+### TurtleBot3パッケージのインストール
 
-**[Remote PC]**
+**[リモートPC]**
 
 ```bash
 $ mkdir -p ~/turtlebot3_ws/src
@@ -88,9 +89,9 @@ $ vcs import src < turtlebot3.repos
 $ colcon build --symlink-install
 ```
 
-### Save Bash Command for Setup
+### セットアップ用にBashコマンドを保存する
 
-**[Remote PC]**
+**[リモートPC]**
 
 ```bash
 $ echo 'source ~/turtlebot3_ws/install/setup.bash' >> ~/.bashrc
@@ -100,57 +101,56 @@ $ source ~/.bashrc
 
 {% capture notice_02 %}
 **NOTE**:
-Following documents will be helpful for you to fix the problem of any build errors or warnings from dependencies files.   
+下記のドキュメントは、ファイルの依存関係によるビルドエラーや警告を修正するのに役立ちます。
 - [Cartographer](https://google-cartographer.readthedocs.io/en/latest/)
 - [Cartographer_ros](https://google-cartographer-ros.readthedocs.io/en/latest/)
 - [Navigation2](https://github.com/ros-planning/navigation2/blob/master/README.md)
 {% endcapture %}
 <div class="notice--info">{{ notice_02 | markdownify }}</div>
 
-## [SBC Setup](#sbc-setup)
+## [SBCのセットアップ](#sbc-setup)
 
-**WARNING** : Do not apply this instruction to Remote PC. Use SBC.
+**警告** : この手順をリモートPCに適用しないでください。SBCに適用します。
 {: .notice--warning}
 
-### Download and Install Ubuntu Image File
+### Ubuntuイメージのダウンロードとインストール
 
 **[TurtleBot3]**
 
-1. Go on [Ubuntu releases](http://cdimage.ubuntu.com/ubuntu/releases/bionic/release) .
-2. Download `Raspberry Pi 3 (64-bit ARM) preinstalled server image` on **Remote PC**
-3. Burn the Ubuntu image file to a microSD card.
+1. [Ubuntu リリース](http://cdimage.ubuntu.com/ubuntu/releases/bionic/release)へ行きます。
+2. "リモートPC"に`Raspberry Pi 3 (64-bit ARM) preinstalled server image`をダウンロードします。
+3. microSDカードにubuntuイメージを書き込みます。
 
-**TIP** : You can use `GNOME Disks` to burn `Ubuntu Server 18.04 image` to microSD.
+**ヒント** : `GNOME Disks`を使用して、microSDに`Ubuntu Server 18.04 image`を書き込むこともできます。
+
 {: .notice--success}
 
-### Initialization Process for Raspberry Pi 3
+### Raspberry Pi 3の初期化プロセス
 
-To communicate between **Remote PC** and **TurtleBot3**, you need to install `Ubuntu Server 18.04 image` file on Raspberry Pi 3.
-
-**[TurtleBot3]**
-
-1. Boot up Raspberry Pi 3 after inserting a microSD card which has the image file into a microSD card slot on SBC in TurtleBot3.  
-  (You can connect HDMI cable, keyboard and mouse into the TurtleBot3)
-2. Log in with default username(`ubuntu`) and password(`ubuntu`).  
-  (After log in, system will ask you whether you change the password or not)
-3. You can configure WiFi network setting by utilizing a [netplan](https://netplan.io/). Refer to [Example for Netwrok Configuration](#example-for-network-configuration).
-
-**NOTE** : TurtleBot3 is a mobile robot to run [SLAM](/docs/en/platform/turtlebot3/ros2_slam/#slam) and [Navigation2](/docs/en/platform/turtlebot3/ros2_navigation2/#navigation) using wireless network, so that connecting TurtleBot3 to Wifi is recommanded.
-{: .notice--info}
-
-### Example for Network Configuration
+**リモートPC**と**TurtleBot3**間で通信するためには、Raspberry Pi 3 に`Ubuntu Server 18.04 image`をインストールする必要があります。
 
 **[TurtleBot3]**
 
-1. Open a terminal on **SBC**
+1. TurtleBot3のSBCのmicroSDカードスロットにOSイメージを書き込んだmicroSDカードを挿入した後、Raspberry Pi 3を起動します。（HDMIケーブル、キーボード、マウスをTurtleBot3に接続できます）
+2. デフォルトのユーザー名（`ubuntu`）とパスワード（`ubuntu`）でログインします。（ログイン後、パスワードを変更するかどうか尋ねられます）
+3. [netplan](https://netplan.io/)を使用してWiFiネットワーク設定を構成できます。 [ネットワーク設定の例](＃example-for-network-configuration)を参照してください。
 
-2. Create a folder, and then open it using the following commands.
+**注釈** ： TurtleBot3は[SLAM](/docs/en/platform/turtlebot3/ros2_slam/#slam)および[Navigation2](/docs/en/platform/turtlebot3/ros2_navigation2/#navigation)を実行するモバイルロボットです。 ワイヤレスネットワークを使用するため、TurtleBot3をWifiに接続することを推奨します。
+{：.notice--info}
+
+### ネットワーク設定の例
+
+**[TurtleBot3]**
+
+1. SBCでターミナルを開きます。
+
+2. ファイルを作成し、次のコマンドを使用して開きます。
 ```bash
 $ sudo touch /etc/netplan/01-netcfg.yaml
 $ sudo nano /etc/netplan/01-netcfg.yaml
 ```
 
-3. After opening the file, configure a network setting. Refer to the network setting below.
+3. ファイルを開き、ネットワークの設定を行います。下記のネットワーク設定を参照してください。
 ```yaml
 network:
   version: 2
@@ -169,71 +169,73 @@ network:
           password: "your-wifi-password"
 ```
 
-4. After configuration, the remote PC can connect to a SBC in TurtleBot3 by following steps.
+4. 設定後、以下の手順でリモートPCをTurtlebot3のSBCに接続できます。
 
-5. Apply all configuration for the renderers, and then restart Raspberry Pi 3.
+5. 全ての設定が完了したら、Raspberry Pi 3を再起動します。
 ```bash
 $ sudo netplan apply
-$ reboot
+$ reboot、
 ```
 
-6. Set the `systemd` to prevent boot-up delay even if there is no network at startup. Run the command below to set mask the `systemd` process using the following command.
+6. 起動時にネットワーク接続がない場合でも起動遅延が発生しないように、`systemd`を設定します。
+以下のコマンドを実行して、`systemd`のプロセスにマスクを設定するには、次のコマンドを実行します。
 ```bash
 $ systemctl mask systemd-networkd-wait-online.service
 ```
 
-7. From now, you can use SSH. Refer to [Connect Remote PC to SBC](#connect-remote-pc-to-sbc)
+7. これにより、SSHを使用できます。[リモートPCをSBCに接続する](#connect-remote-pc-to-sbc)を参照してください
 
-#### [Connect Remote PC to SBC](#connect-remote-pc-to-sbc)
+#### [リモートPCをSBCに接続する](#connect-remote-pc-to-sbc)
 
-Be sure to read [Example for Network Configuration](#example-for-network-configuration) before proceeding to the following steps. 
+この手順に進む前に[ネットワーク設定の例](#example-for-network-configuration)を必ずお読みください。
 {: .notice--warning}
+　
+**[リモートPC]**
 
-**[Remote PC]**
-
-1. Open a terminal on **Remote PC**
-2. Use the following command.
+1. **リモートPC**でターミナルを開きます。
+2. 下記のコマンドを入力します。
 ```bash
-$ ssh ubuntu@<NETWORK IP of Raspberry PI>
+$ ssh ubuntu@<Raspberry PIのネットワークIP>
 ```
 
-### Add Swap Space
+### スワップ領域の追加
 
 **[TurtleBot3]**
 
-1. Open a terminal on **SBC**
+1. **SBC**のターミナルを開きます。
 
-2. Create a file while it will be used for swap.
+2. スワップに使用するファイルを作成します。
 ```bash
 $ sudo fallocate -l 1G /swapfile
 ```
 
-3. Give `read` and `write` permissions to the file.
+3. ファイルに`読み込み`と`書き込み`の権限を付与します。
 ```bash
 $ sudo chmod 600 /swapfile
 ```
 
-4. Use `mkswap` to set up a Linux swap area. 
+4. `mkswap`を使用し、Linuxのスワップ領域を設定します。
 ```bash
 $ sudo mkswap /swapfile
 ```
 
-5. After creating a file, activate the file to start using it. 
+5. ファイルの作成後、ファイルをアクティブにして使用を開始します。
 ```bash
 $ sudo swapon /swapfile
 ```
 
 6. Open `/etc/fstab` file with `nano` command, as swap areas are listed in `/etc/fastab`.
+6. スワップ領域が`/etc/fstab`にリストされているので、`nano`コマンドで`/etc/fstab'ファイルを開きます
 ```bash
 $ sudo nano /etc/fstab
 ```
 
-7. Copy the sentence below, then paste it into the file you opened.
+7. 下記の文をコピーして、開いたファイルへ貼り付けます。
 ```
 /swapfile swap swap defaults 0 0
 ```
 
-8. Verify swap area with `free` syntax whether it is allocated. It will present a table consisting of six colums and three rows of data. 
+8. スワップ領域が割り当てられているかどうかを、`free`コマンドで確認します。 6つの列と3つのデータ行で構成されるテーブルが表示されます。
 ```bash
 $ sudo free -h
                  total        used        free      shared  buff/cache   available
@@ -241,39 +243,42 @@ Mem:           912M         97M        263M        4.4M        550M        795M
 Swap:          1.0G          0B        1.0G
 ```
 
-### Install ROS Dashing Diademata
+## ROS Dashing Diademataをインストールする
 
-As TurtleBot3 operates on ROS, it requies to install ROS 2 (Dashing Diademata) on **SBC of TurtleBot3**. Following link will guide you for installing ROS 2.
+TurtleBot3はROSで動作するために、**TurtleBot3**のSBCにROS 2(Dashing Diademata)をインストールする必要があります。下記のリンクは、ROS 2をインストールするためのガイドです。
 
-- [ROS 2 Installation Guide](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
+- [ROS 2 インストールガイド](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
 
 **[TurtleBot3]**
 
-1. Open a terminal on **SBC**
+1. **SBC**のターミナルを開く。
 
-2. Update and upgrade your software
+2. ソフトウェアの更新とアップグレードをします。
 ```bash
 $ sudo apt update && sudo apt upgrade
 ```
-3. Setup locale
+
+3. ロケールを設定する。
 ```bash
 $ sudo locale-gen en_US en_US.UTF-8
 $ sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 $ export LANG=en_US.UTF-8
 ```
-4. Setup sources
+
+4. ソースを設定する。
 ```bash
 $ sudo apt update && sudo apt install curl gnupg2 lsb-release
 $ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 $ sudo sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
 ```
-5. Install ROS 2 packages
+
+5. ROS 2のパッケージのインストール
 ```bash
 $ sudo apt update
 $ sudo apt install ros-dashing-ros-base
 ```
 
-### Install TurtleBot3 Packages
+### TurtleBot3パッケージのインストール
 
 **[TurtleBot3]**
 
@@ -292,34 +297,34 @@ $ source ~/.bashrc
 $ colcon build --symlink-install --parallel-workers 1
 ```
 
-### Environment Setup
+### 環境設定
 
-#### Domain ID Allocation
-In DDS communication, `ROS_DOMAIN_ID` must be matched between **Remote PC** and **TurtleBot3** for wireless communication under the same network environment. Following commands shows how to assign a `ROS_DOMAIN_ID` to SBC in TurtleBot3.
-- A default ID of **TurtleBot3** is set as `0`.  
-- To configure the `ROS_DOMAIN_ID` of Remote PC and SBC in TurtleBot3 to `30` is recommendable.  
+#### ドメインIDの割り当て
+DDS通信では、同じネットワーク環境でのワイヤレス通信のために、`ROS_DOMAIN_ID`を**リモートPC**と**TurtleBot3**の間で一致させる必要があります。 次のコマンドは、TurtleBot3のSBCに`ROS_DOMAIN_ID`を割り当てる方法を示しています。
+- **TurtleBot3**のデフォルトIDは `0`に設定されています。
+- TurtleBot3のリモートPCとSBCの`ROS_DOMAIN_ID`を`30`に設定することを推奨します。
 
 **[TurtleBot3]**
 
-1. Open a terminal on **SBC**
-2. Use the following commands.
+1. **SBC**のターミナルを開きます。
+2. 次のコマンドを入力します。
 ```bash
 $ echo 'source ~/turtlebot3_ws/install/setup.bash' >> ~/.bashrc
 $ echo 'export ROS_DOMAIN_ID=30 #TURTLEBOT3' >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
-    **WARNING** : Do not **OVERLAP** any IDs between you and other users. It will cause a conflict of communication between users under the same network environment.
+    **警告** : あなたと他のユーザー間でIDが**重複**しないようにしてください。同じネットワーク環境下でユーザー間の通信の競合が発生します。
     {: .notice--warning}
 
-#### OpenCR Port Setup
+#### OpenCRのポートセットアップ
 
-Following commands show how to assign OpenCR port authorization to TurtleBot3.
+次のコマンドは、TurtleBot3にOpenCRのポート認証を割り当てる方法です。
 
 **[TurtleBot3]**
 
-1. Open a terminal on **SBC**
-2. Use the following commands.
+1. **SBC**のターミナルを開きます。
+2. 次のコマンドを入力します。
 ```bash
 $ cd ~/turtlebot3_ws/src/turtlebot3/turtlebot3_bringup 
 $ sudo cp ./99-turtlebot3-cdc.rules /etc/udev/rules.d/ 
@@ -327,7 +332,7 @@ $ sudo udevadm control --reload-rules
 $ sudo udevadm trigger
 ```
 
-### [References](#references)
+### [参考](#references)
 
 [https://wiki.ubuntu.com/ARM/RaspberryPi](https://wiki.ubuntu.com/ARM/RaspberryPi)  
 [https://discourse.ros.org/t/setting-up-the-turtlebot3-with-ros2-on-ubuntu-server-iot-18-04/10090](https://discourse.ros.org/t/setting-up-the-turtlebot3-with-ros2-on-ubuntu-server-iot-18-04/10090)  
@@ -336,10 +341,9 @@ $ sudo udevadm trigger
 [https://index.ros.org/doc/ros2/Tutorials/Colcon-Tutorial/](https://index.ros.org/doc/ros2/Tutorials/Colcon-Tutorial/)  
 [https://linuxize.com/post/how-to-add-swap-space-on-ubuntu-18-04/](https://linuxize.com/post/how-to-add-swap-space-on-ubuntu-18-04/)
 
-## [OpenCR Setup](#opencr-setup)
+## [OpenCRのセットアップ](#opencr-setup)
 
-
-### Install Dependencies to Run 32bit Executables.
+### 依存関係をインストールし、32ビットの実行可能ファイルを実行します。
 
 ```bash
 $ sudo dpkg --add-architecture armhf
@@ -347,7 +351,7 @@ $ sudo apt-get update
 $ sudo apt-get install libc6:armhf
 ```
 
-### Download OpenCR Binaries & Tools for Uploading.
+### アップロード用のOpenCRバイナリとツールをダウンロードします。
 
 ```bash
 $ cd && rm -rf opencr_update.tar.bz2
@@ -355,10 +359,10 @@ $ wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS2
 $ tar -xjf ./opencr_update.tar.bz2
 ```
 
-### Upload ROS 2 Firmware of TurtleBot3 to OpenCR.
+### TurtleBot3のROS 2ファームウェアをOpenCRにアップロードします。
 
-#### For TurtleBot3 Burger.
-
+#### TurtleBot3 Burgerの場合
+32
 ```bash
 # Set a port for OpenCR 
 $ export OPENCR_PORT=/dev/ttyACM0
@@ -367,8 +371,8 @@ $ export OPENCR_MODEL=burger
 $ cd ~/opencr_update && ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
 ```
 
-The following window shows you the result of a firmware upload of TurtleBot3 Burger to OpenCR.  
-Make sure `jump_to_fw` message is displayed on the bottom of the window. 
+次のウィンドウは、TurtleBot3 BurgerのファームウェアをOpenCRにアップロードした結果を示しています。
+`jump_to_fw`メッセージがウィンドウの下部に表示されていることを確認してください。
 
 ```bash
 aarch64
@@ -392,7 +396,7 @@ opencr_ld_main
 [OK] jump_to_fw
 ```
 
-#### For TurtleBot3 Waffle and Waffle Pi.
+#### TurtleBot3 Waffle and Waffle Piの場合
 
 ```bash
 # Set a port for OpenCR 
@@ -402,8 +406,8 @@ $ export OPENCR_MODEL=waffle
 $ cd ~/opencr_update && ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
 ```
 
-The following window shows you the result of a firmware upload of TurtleBot3 Waffle/Waffle Pi to OpenCR.  
-Make sure `jump_to_fw` message is displayed on the bottom of the window.  
+次のウィンドウは、TurtleBot3 BurgerのファームウェアをOpenCRにアップロードした結果を示しています。
+`jump_to_fw`メッセージがウィンドウの下部に表示されていることを確認してください。
 
 ```bash
 aarch64
@@ -427,56 +431,58 @@ opencr_ld_main
 [OK] jump_to_fw
 ```
 
-Reset OpenCR using RESET button.
+RESETボタンを使用してOpenCRをリセットします。
 
 ![](/assets/images/parts/controller/opencr10/bootloader_19.png)
 
-After few seconds, particular sound will be played. 
+数秒後、特定のサウンドが再生されます。
 
-## [Hardware Setup](#hardware-setup)
+## [ハードウェアセットアップ](#hardware-setup)
 
 ![](/assets/images/platform/turtlebot3/hardware_setup/turtlebot3_models.png)
 
-### [Part List](#part-list)
+### [パーツリスト](#part-list)
 
 TurtleBot3 has three different models: `Burger`, `Waffle` and `Waffle Pi`. The following list shows their components. The big differences between three models are the Motor, the SBC (Single Board Computer) and the Sensors. The TurtleBot3 Waffle model is discontinued due to discontinuation of Intel® Joule™.
 
-|                        | Part Name                       | Burger | Waffle | Waffle Pi |
-|:-----------------------|:--------------------------------|:-------|:-------|:----------|
-| **Chassis Parts**      | Waffle Plate                    | 8      | 24     | 24        |
-| .                      | Plate Support M3x35mm           | 4      | 12     | 12        |
-| .                      | Plate Support M3x45mm           | 10     | 10     | 10        |
-| .                      | PCB Support                     | 12     | 12     | 12        |
-| .                      | Wheel                           | 2      | 2      | 2         |
-| .                      | Tire                            | 2      | 2      | 2         |
-| .                      | Ball Caster                     | 1      | 2      | 2         |
-| .                      | Camera Bracket                  | 0      | 0      | 1         |
-| **Motors**             | DYNAMIXEL (XL430-W250-T)        | 2      | 0      | 0         |
+TurtleBot3には、`Burger`, `Waffle`、 `Waffle Pi`の3つのモデルがあります。 次のリストは、それらのコンポーネントを示しています。 3つのモデルの大きな違いは、モータ、SBC(シングルボードコンピュータ)、センサです。 TurtleBot3 Waffleモデルは、Intel®Joule™の販売終了により廃止されました。
+
+|                        | パーツ名                         | Burger | Waffle | Waffle Pi |
+| --------------------   | --------------------            | ----   | ----   | -------   |
+| **シャーシ パーツ**      | Waffle プレート                   | 8      | 24     | 24        |
+| .                      | プレート サポート M3x35mm          | 4      | 12     | 12        |
+| .                      | プレート サポート M3x45mm          | 10     | 10     | 10        |
+| .                      | PCB サポート                      | 12     | 12     | 12        |
+| .                      | ホイール                          | 2      | 2      | 2         |
+| .                      | タイヤ                            | 2      | 2      | 2         |
+| .                      | ボールキャスタ                     | 1      | 2      | 2         |
+| .                      | カメラブラケット                   | 0      | 0      | 1         |
+| **モータ**              | DYNAMIXEL (XL430-W250-T)        | 2      | 0      | 0         |
 | .                      | DYNAMIXEL (XM430-W210-T)        | 0      | 2      | 2         |
-| **Boards**             | OpenCR1.0                       | 1      | 1      | 1         |
+| **ボード**              | OpenCR1.0                       | 1      | 1      | 1         |
 | .                      | Raspberry Pi 3                  | 1      | 0      | 1         |
 | .                      | Intel® Joule™                   | 0      | 1      | 0         |
 | .                      | USB2LDS                         | 1      | 1      | 1         |
-| **Remote Controllers** | BT-410 Set (Bluetooth 4, BLE)   | 0      | 0      | 1         |
-| .                      | RC-100B (Remote Controller)     | 0      | 0      | 1         |
-| **Sensors**            | LDS (HLS-LFCD2)                 | 1      | 1      | 1         |
+| **リモート コントローラ** | BT-410 セット(Bluetooth 4, B LE) | 0      | 0      | 1         |
+| .                      | RC-100B (リモートコントローラ)     | 0      | 0      | 1         |
+| **センサ**              | LDS (HLS-LFCD2)                 | 1      | 1      | 1         |
 | .                      | Intel® Realsense™ R200          | 0      | 1      | 0         |
 | .                      | Raspberry Pi Camera Module v2.1 | 0      | 0      | 1         |
-| **Memorys**            | MicroSD Card                    | 1      | 0      | 1         |
-| **Cables**             | Raspberry Pi 3 Power Cable      | 1      | 0      | 1         |
-| .                      | Intel® Joule™ Power Cable       | 0      | 1      | 0         |
-| .                      | Li-Po Battery Extension Cable   | 1      | 1      | 1         |
-| .                      | DYNAMIXEL to OpenCR Cable       | 2      | 2      | 2         |
-| .                      | USB Cable                       | 2      | 2      | 2         |
-| .                      | Camera Cable                    | 0      | 0      | 1         |
-| **Powers**             | SMPS 12V5A                      | 1      | 1      | 1         |
-| .                      | A/C Cord                        | 1      | 1      | 1         |
-| .                      | LIPO Battery 11.1V 1,800mAh     | 1      | 1      | 1         |
-| .                      | LIPO Battery Charger            | 1      | 1      | 1         |
-| **Tools**              | Screw driver                    | 1      | 1      | 1         |
-| .                      | Rivet tool                      | 1      | 1      | 1         |
-| .                      | USB3.0 Hub                      | 0      | 1      | 0         |
-| **Miscellaneous**      | PH_M2x4mm_K                     | 8      | 8      | 8         |
+| **メモリ**              | MicroSD カード                   | 1      | 0      | 1         |
+| **ケーブル**            | Raspberry Pi 3 電源ケーブル       | 1      | 0      | 1         |
+| .                      | Intel® Joule™ 電源ケーブル        | 0      | 1      | 0         |
+| .                      | Li-Po Battery 延長ケーブル        | 1      | 1      | 1         |
+| .                      | DYNAMIXEL to OpenCR ケーブル     | 2      | 2      | 2         |
+| .                      | USB ケーブル                     | 2      | 2      | 2         |
+| .                      | カメラ ケーブル                   | 0      | 0      | 1         |
+| **電源**               | SMPS 12V5A                      | 1      | 1      | 1         |
+| .                      | A/C コード                       | 1      | 1      | 1         |
+| .                      | LIPO バッテリ 11.1V 1,800mAh     | 1      | 1      | 1         |
+| .                      | LIPO バッテリ チャージャ           | 1      | 1      | 1         |
+| **ツール**              | ドライバ                         | 1      | 1      | 1         |
+| .                      | リベットツール                    | 1      | 1      | 1         |
+| .                      | USB3.0 ハブ                     | 0      | 1      | 0         |
+| **その他**              | PH_M2x4mm_K                     | 8      | 8      | 8         |
 | .                      | PH_T2x6mm_K                     | 4      | 8      | 8         |
 | .                      | PH_M2x12mm_K                    | 0      | 4      | 4         |
 | .                      | PH_M2.5x8mm_K                   | 16     | 12     | 16        |
@@ -489,23 +495,22 @@ TurtleBot3 has three different models: `Burger`, `Waffle` and `Waffle Pi`. The f
 | .                      | NUT_M3                          | 16     | 96     | 96        |
 | .                      | Rivet_1                         | 14     | 20     | 22        |
 | .                      | Rivet_2                         | 2      | 2      | 2         |
-| .                      | Spacer                          | 4      | 4      | 4         |
-| .                      | Silicone Spacer                 | 0      | 0      | 4         |
-| .                      | Bracket                         | 5      | 8      | 6         |
-| .                      | Adapter Plate                   | 1      | 1      | 1         |
+| .                      | スペーサ                         | 4      | 4      | 4         |
+| .                      | シリコンスペーサ                   | 0      | 0      | 4         |
+| .                      | ブラケット                        | 5      | 8      | 6         |
+| .                      | アダプタプレート                   | 1      | 1      | 1         |
 
-### [Assembly Manual](#assembly-manual)
+### [アセンブリマニュアル](#assembly-manual)
 
-TurtleBots3 is delivered as unassembled parts in the boxes. Follow the instructions to assemble TurtleBot3.
+TurtleBots3は、組み立てられていない部品として箱に入れて提供されます。 指示に従いTurtleBot3をアセンブルします。
 
-- `Download PDF` [Assembly manual for TurtleBot3 Burger](http://www.robotis.com/service/download.php?no=748)
-- `Download PDF` [Assembly manual for TurtleBot3 Waffle](http://www.robotis.com/service/download.php?no=749)
-- `Download PDF` [Assembly manual for TurtleBot3 Waffle Pi](http://www.robotis.com/service/download.php?no=750)
+- `PDFダウンロード` [TurtleBot3 Burger アセンブリマニュアル](http://www.robotis.com/service/download.php?no=748)
+- `PDFダウンロード` [TurtleBot3 Waffle アセンブリマニュアル](http://www.robotis.com/service/download.php?no=749)
+- `PDFダウンロード` [TurtleBot3 Waffle Pi アセンブリマニュアル](http://www.robotis.com/service/download.php?no=750)
 
-### [Assembly Video](#assembly-video)
+### [アセンブリビデオ](#assembly-video)
 
-If it is difficult to assemble with the assembly manual, please refer to the following assembly video.
-
+マニュアルでのアセンブリが難しい場合は、下記の動画をご覧ください。
 
 #### [TurtleBot3 Burger](#turtlebot3-burger)
 
@@ -517,15 +522,15 @@ If it is difficult to assemble with the assembly manual, please refer to the fol
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/1nTMyr4ybi0" frameborder="0" allowfullscreen></iframe>
 
-### [Open Source Hardware](#open-source-hardware)
+### [オープンソースハードウェア](#open-source-hardware)
 
-Core components of Turtlebot3 are the followings: Chassis, Motors, Wheels, OpenCR, SBC, Sensors and Battery. The chassis are Waffle Plates that holds other components. The Waffle Plate plays an important role as a chassis although its size is as small as your palm. The Waffle Plate is manufactured with injection mold method to lower the manufacturing cost. However, the CAD data of Waffle Plate for 3D printing is also available via [Onshape][waffle_plate_on_onshape]. Turtlebot3 Burger is a Two-wheeled differential drive type platform, but it is customizable structurally and mechanically in many ways: Segway, Tank, Bike, Trailer and so on.
+Turtlebot3の主なコンポーネントは、シャーシ、モーター、ホイール、OpenCR、SBC、センサ、バッテリーです。 シャーシは、他のコンポーネントを保持するワッフルプレートです。 ワッフルプレートは手のひらほどのサイズですが、シャーシとして重要な役割を果たします。 ワッフルプレートは、製造コストを下げるために射出成形法で製造されています。 ただし、3Dプリント用のワッフルプレートのCADデータは、[Onshape][waffle_plate_on_onshape]からも入手できます。 Turtlebot3 Burgerは、二輪差動駆動タイプのプラットフォームですが、Segway、Tank、Bike、Trailerなど、さまざまな方法で構造的および機械的にカスタマイズできます。
 
-The CAD data is released to the Onshape, which is a full-cloud 3D CAD editor. Get access through a web browser from your PC or from portable devices. Onshape allows drawing and assemblying parts with co-workers.
+CADデータは、フルクラウドの3D CADエディタであるOnshapeでリリースされています。 PCまたはポータブルデバイスからWebブラウザを介してアクセスします。 Onshapeを使用すると、仕事仲間と部品作りや組み立てができます。
 
-- [TurtleBot3 Burger 3D Model](http://www.robotis.com/service/download.php?no=676)
-- [TurtleBot3 Waffle 3D Model](http://www.robotis.com/service/download.php?no=677)
-- [TurtleBot3 Waffle Pi 3D Model](http://www.robotis.com/service/download.php?no=678)
+- [TurtleBot3 Burger 3Dモデル](http://www.robotis.com/service/download.php?no=676)
+- [TurtleBot3 Waffle 3Dモデル](http://www.robotis.com/service/download.php?no=677)
+- [TurtleBot3 Waffle Pi 3Dモデル](http://www.robotis.com/service/download.php?no=678)
 
 [waffle_plate_on_onshape]: https://cad.onshape.com/documents/2586c4659ef3e7078e91168b/w/14abf4cb615429a14a2732cc/e/6c94f199b347f8785a67b6f8
 [Open Robotics]: http://www.osrfoundation.org/

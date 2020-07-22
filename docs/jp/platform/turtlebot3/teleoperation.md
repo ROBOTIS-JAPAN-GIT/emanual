@@ -38,7 +38,7 @@ TurtleBot3は、様々な機器での遠隔操作が可能です。PS3、 XBOX 3
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/Z4s18hlazb4" frameborder="0" allowfullscreen></iframe>
 
-e-Manualの内容は、事前のお知らせなしで更新されることがあります。そのため、一部の映像はe-Manualの内容と異なる場合があります。
+e-Manualの内容は、予告なしで更新される場合があります。そのため、いくつかの動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning}
 
 ### [キーボード](#keyboard)
@@ -48,7 +48,7 @@ e-Manualの内容は、事前のお知らせなしで更新されることがあ
 **ヒント**：このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。`${TB3_MODEL}` は `burger`、`waffle`、`waffle_pi` であり、使用するモデルの名前です。このエクスポート設定を今後も引き続き使用したい場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup}のページを参照してください。
 {: .notice--success}
 
-**[リモートPC]** Launch `turtlebot3_teleop_key` node for simple teleoperation test.
+**[リモートPC]** 簡易的な遠隔操作のテストを行うために`turtlebot3_teleop_key`ノードを起動します。
 
 ``` bash
 $ export TURTLEBOT3_MODEL=%{TB3_MODEL}

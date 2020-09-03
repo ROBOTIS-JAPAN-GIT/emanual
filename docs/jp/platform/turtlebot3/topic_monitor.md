@@ -1,6 +1,6 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: topic_monitor
 read_time: true
 share: true
@@ -22,58 +22,57 @@ page_number: 16
 
 ## [Topic Monitor](#topic-monitor)
 
-**WARNING**: Be careful when running the robot on the table as the robot might fall.
+**警告**: ロボットをテーブルの上で動かす際には、ロボットが落下する可能性があるため注意してください。
 {: .notice--warning}
 
 {% capture notice_01 %}
-**NOTE**: 
-- This instructions were tested on `Ubuntu 16.04` and `ROS Kinetic Kame`.
-- This instructions are supposed to be running on the remote PC. Please run the instructions below on your **Remote PC**.
-- Make sure to run the [Bringup](/docs/en/platform/turtlebot3/bringup/#bringup) instructions before use of the instruction
+**注意**:
+- このコマンドは、`Ubuntu 16.04` と `ROS Kinetic Kame` で動作確認をしました。
+- このコマンドは、リモートPC上で実行されることを想定しています。以下の手順を **リモートPC** で実行してください。
+- コマンドを使用する前に、必ず[Bringup](/docs/en/platform/turtlebot3/bringup/#bringup)のコマンドを実行してください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
-In order to check the topics of TurtleBot3, we will use [rqt][rqt] provided by ROS. The rqt is a Qt-based framework for GUI development for ROS. The rqt is a tool that allows users to easily see the topic status by displaying all the topics in the topic list. There are topic names, types, bandwidth, Hz, value in GUI.
+TurtleBot3のtopicを確認するために、ROSが提供している[rqt][rqt]を利用します。rqtは、QtベースのROSのGUI開発用フレームワークです。rqtは、topic listにすべてのtopicを表示することによりユーザーが簡単にtopicの状態を確認できるツールです。GUIでは、topic名、種類、帯域幅、Hz、値があります。
 
-**[Remote PC]** Run the rqt.
+**[Remote PC]** rqtを実行してください。
 ``` bash
 $ rqt
 ```
 ![](/assets/images/platform/turtlebot3/example/rqt_1.png)
 
-**TIP**: If rqt is not displayed, select the `plugin` -> `Topics` -> `Topic Monitor`.
-{: .notice--info}
+**注釈**: rqtが表示されない場合は、`plugin` -> `Topics` -> `Topic Monitor`を選択してください。
+{: .notice--info}を選択してください。
 
-When rqt is first run, the topic values are not monitored. To monitor the topic, click the checkbox next to each topic.
+rqtを最初に実行すると、topicの値はモニターされません。topicをモニタリングするには、各トピックの横にあるチェックボックスをクリックします。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_2.png)
 
-If you want to see more detail topic message, click the `▶` button next to each checkbox.
+より詳細なトピックメッセージを表示したい場合は、各チェックボックスの横にある `▶` ボタンをクリックしてください。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_3.png)
 
 
-- `/battery_state` indicates a message relating to the battery condition, such as the current battery voltage and remaining capacity.
+- `/battery_state` は、現在のバッテリーの電圧や残量など、バッテリーの状態に関するメッセージを表示します。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_4.png)
 
-- `/diagnostics` indicates a message the status of the components connected to the TurtleBot3, such as a MPU9250, DYNAMIXEL-X, a HLS-LFCD-LDS, a battery and a OpenCR.
+- `/diagnostics` は、MPU9250、DYNAMIXEL-X、HLS-LFCD-LDS、バッテリー、OpenCRなど、TurtleBot3に接続されているコンポーネントの状態をメッセージで表示します。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_5.png)
 
-- `/odom` indicates a message the odometry of the TurtleBot3. This topic has orientation and position by the encoder data.  
+- `/odom` は、TurtleBot3のオドメトリを示すメッセージです。このtopicはエンコーダ値による方位と位置を持っています。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_6.png)
 
-- `/sensor_state` indicates a message the encoder values, battery and torque.
+- `/sensor_state` は、エンコーダ値、バッテリー、トルクをメッセージで表示しています。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_7.png)
 
-- `/scan` indicates a message all of the LDS data, such as angle_max and min, range_max and min, indicates, ranges.
-
+- `/scan` は、angle_maxとmin、range_maxとmin等のすべてのLDSデータが範囲を示すメッセージです。
 ![](/assets/images/platform/turtlebot3/example/rqt_8.png)
 
-In addition, you can monitor topics through rqt whenever you have a topic added.
+さらに、topicを追加するたびに、rqtを介してトピックをモニタリングできます。
 
 [bringup]: /docs/en/platform/turtlebot3/bringup/#bringup
 [rqt]: http://wiki.ros.org/rqt

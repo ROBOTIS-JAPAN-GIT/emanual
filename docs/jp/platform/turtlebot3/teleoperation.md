@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: teleoperation
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/teleoperation/
+permalink: /docs/jp/platform/turtlebot3/teleoperation/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -20,43 +20,42 @@ page_number: 17
   <h1 id="basic-operation"><a href="#basic-operation">Basic Operation</a></h1>
 <![end dummy Header 1]-->
 
-## [Teleoperation](#ros-teleoperation)
+## [遠隔操作](#ros-teleoperation)
 
 ![](/assets/images/platform/turtlebot3/software/remote_pc_and_turtlebot.png)
 
 {% capture notice_01 %}
-**NOTE**: 
-- This instruction was tested on `Ubuntu 16.04` and `ROS Kinetic Kame`.
-- This examples are supposed to be running on the remote PC. Follow the instruction on your **Remote PC**.
+**注釈**：
+- このコマンドは `Ubuntu 16.04` と `ROS Kinetic Kame` でテストをしました。
+- この例は、リモートPCでの動作を想定しています。**リモートPC** の指示に従ってください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
-**WARNING**: Make sure to run the [Bringup][bringup] instruction before performing this examples, and be careful when testing the robot on the table as the robot might fall.
+**警告**：この例を実行する前に、必ず[Bringup][bringup]コマンドを実行してください。また、テーブルの上でロボットをテストする際には、ロボットが落下してしまう可能性があるため、注意してください。
 {: .notice--warning}
 
-The TurtleBot3 can be teleoperated by various devices. It is tested with several wireless devices such as PS3, XBOX 360, ROBOTIS RC100 and etc. This examples shown here(except the LEAP Motion) can be launched by ROS on Ubuntu mate 16.04 with Raspberry Pi 3 and OpenCR which controls DYNAMIXEL.
+TurtleBot3は、様々な機器での遠隔操作が可能です。PS3、 XBOX 360、 ROBOTIS RC100などの無線機器で動作確認をしています。ここで紹介した例（LEAP Motionを除く）は、Raspberry Pi 3のUbuntu mate 16.04上のROSとDYNAMIXELを制御するOpenCRによって起動することができます。
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/Z4s18hlazb4" frameborder="0" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
-{: .notice--warning} 
+e-Manualの内容は、予告なしで更新される場合があります。そのため、いくつかの動画はe-Manualの内容と異なる場合があります。
+{: .notice--warning}
 
-### [Keyboard](#keyboard)
-
-**TIP**: The terminal application can be found with the Ubuntu search icon on the top left corner of the screen. Shortcut key for terminal is `Ctrl`-`Alt`-`T`.
+### [キーボード](#keyboard)
+**ヒント**：ターミナルアプリは、画面左上のUbuntuの検索アイコンで見つけることができます。ターミナルのショートカットキーは `Ctrl`-`Alt`-`T` です。
 {: .notice--info}
 
-**TIP**: Before executing this command, you have to specify the model name of TurtleBot3. The `${TB3_MODEL}` is the name of the model you are using in `burger`, `waffle`, `waffle_pi`. If you want to permanently set the export settings, please refer to [Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup} page.
+**ヒント**：このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。`${TB3_MODEL}` は `burger`、`waffle`、`waffle_pi` であり、使用するモデルの名前です。このエクスポート設定を今後も引き続き使用したい場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup}のページを参照してください。
 {: .notice--success}
 
-**[Remote PC]** Launch `turtlebot3_teleop_key` node for simple teleoperation test.
+**[リモートPC]** 簡易的な遠隔操作のテストを行うために`turtlebot3_teleop_key`ノードを起動します。
 
 ``` bash
 $ export TURTLEBOT3_MODEL=%{TB3_MODEL}
 $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 ```
 
-If the node is successfully launched, the following instruction will be appeared to the terminal window.
+ノードの起動に成功すると、ターミナルウィンドウに以下のようなコマンドが表示されます。
 
 ``` bash
   Control Your Turtlebot3!
@@ -75,48 +74,48 @@ If the node is successfully launched, the following instruction will be appeared
 
 ### [RC100](#rc100)
 
-The settings for [ROBOTIS RC-100B][rc100] controller is included in the OpenCR firmware for TurtleBot3 Burger, Waffle and Waffle Pi. This controller can be used with the Bluetooth module [BT410][bt410]. The TurtleBot3 Waffle Pi includes this controller and Bluetooth modules. When using RC-100, it is not necessary to execute a specific node because `turtlebot_core` node creates a `/cmd_vel` topic in the firmware directly connected to OpeCR.
+[ROBOTIS RC-100B][rc100]コントローラの設定は、TurtleBot3 Burger、Waffle、Waffle Pi用のOpenCRファームウェアに含まれています。このコントローラは、Bluetoothモジュール[BT410][BT410]と組み合わせて使用することができます。TurtleBot3 Waffle Piには、本コントローラとBluetoothモジュールが同梱されています。RC-100を使用する場合、`turtlebot_core`ノードはOpenCRに直結したファームウェア内に`/cmd_vel`トピックを作成するため、特定のノードを実行する必要はありません。
 
 ![](/assets/images/platform/turtlebot3/example/rc100b_with_bt410.png)
 
-### [PS3 Joystick](#ps3-joystick)
+### [PS3ジョイステック](#ps3-joystick)
 
-**[Remote PC]** Connect PS3 Joystick to the remote PC via Bluetooth or with USB cable.
+**[リモートPC]** PS3ジョイスティックとリモートPCをBluetoothまたはUSBケーブル経由で接続します。
 
-**[Remote PC]** Install packages for teleoperation using PS3 joystick.
+**[リモートPC]** PS3ジョイスティックを使用した遠隔操作を行うためのパッケージをインストールします。
 
 ``` bash
 $ sudo apt-get install ros-kinetic-joy ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-joy
 ```
 
-**[Remote PC]** Launch teleoperation packages for PS3 joystick.
+**[リモートPC]** PS3ジョイスティック用の遠隔操作パッケージを起動します。
 
 ``` bash
 $ roslaunch teleop_twist_joy teleop.launch
 ```
 
-### [XBOX 360 Joystick](#xbox-360-joystick)
+### [XBOX 360ジョイステック](#xbox-360-joystick)
 
-**[Remote PC]** Connect XBOX 360 Joystick to the remote PC with Wireless Adapter or USB cable.
+**[リモートPC]** 360ジョイスティックとリモートPCをワイヤレスアダプタまたはUSBケーブルによって接続します。
 
-**[Remote PC]** Install packages for teleoperation using XBOX 360 joystick.
+**[リモートPC]** XBOX 360ジョイスティックを使用した遠隔操作を行うためのパッケージをインストールします。
 
 ``` bash
 $ sudo apt-get install xboxdrv ros-kinetic-joy ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-joy
 ```
 
-**[Remote PC]** Launch teleoperation packages for XBOX 360 joystick.
+**[リモートPC]** XBOX 360ジョイスティック用の遠隔操作パッケージを起動します。
 
 ``` bash
 $ sudo xboxdrv --silent
 $ roslaunch teleop_twist_joy teleop.launch
 ```
 
-### [Wii Remote](#wii-remote)
+### [Wiiリモコン](#wii-remote)
 
-**[Remote PC]** Connect Wii remote to the remote PC via Bluetooth.
+**[リモートPC]** WiiリモコンとリモートPCをBluetooth経由で接続します。
 
-**[Remote PC]** Install packages for teleoperation using Wii remote.
+**[リモートPC]** Wiiリモコンを使用した遠隔操作を行うためのパッケージをインストールします。
 
 ``` bash
 $ sudo apt-get install ros-kinetic-wiimote libbluetooth-dev libcwiid-dev
@@ -128,40 +127,41 @@ $ git clone https://github.com/ros-drivers/joystick_drivers.git
 $ cd ~/catkin_ws && catkin_make
 ```
 
-**[Remote PC]** Run teleoperation packages for Wii remote.
+**[リモートPC]** Wiiリモコン用の遠隔操作パッケージを実行します。
 
 ``` bash
 $ rosrun wiimote wiimote_node
 $ rosrun wiimote teleop_wiimote
 ```
 
-### [Nunchuk](#nunchuk)
+### [ヌンチャク](#nunchuk)
 
 (TODO)
 
-### [Android App](#android-app)
+### [Androidアプリ](#android-app)
 
-Download [ROS CONTROL][ros_control] and run the application.
+[ROS CONTROL][ros_control]をダウンロードし、アプリを起動します。
 
-After connecting `roscore` to ROS_CONTROL app, enter `Topic` tab in `Preferences` to confiture topic name.
+ROS_CONTROLアプリに`roscore`を接続したら、`Preferences`の`Topic`タブにトピック名を入力します。
 
 ![](/assets/images/platform/turtlebot3/example/ros_control.png)
 
-You are supposed to change topic name as `/cmd_vel` in Joystick Topic, `/scan` in LaserScan Topic,
-`/image_raw/compressed` in Image Topic and `/odom` in Odometry Topic.
+ジョイスティックトピックでは `/cmd_vel`、レーザースキャントピックでは `/scan` のようにトピック名を変更する必要があります。
+画像トピックでは `/image_raw/compressed`、オドメトリトピックでは `/odom` を使用します。
 
-Then, you can check state of node and topic connection by `rqt_graph` commands
+そして、`rqt_graph`コマンドを使うことで、ノードとトピックの接続状態を確認することができます。
+
 
 ![](/assets/images/platform/turtlebot3/example/ros_control_graph.png)
 
 ### [LEAP Motion](#leap-motion)
 
-**[Remote PC]** Connect LEAP motion to the remote PC via Bluetooth.
+**[リモートPC]** LEAP motionとリモートPCをBluetooth経由で接続します。
 
-**[Remote PC]** Install packages for teleoperation using LEAP motion.
+**[リモートPC]** LEAP motionを使用した遠隔操作用のパッケージをインストールします。
 
-- [LEAP Setup][leap_setup]
-- [Download SDK][leap_sdk]
+- [LEAPのセットアップ][leap_setup]
+- [SDKのダウンロード][leap_sdk]
 
 ``` bash
 $ leapd
@@ -169,7 +169,7 @@ $ LeapCommandPanel
 $ git clone git@github.com:warp1337/rosleapmotion.git
 ```
 
-**[Remote PC]** Run teleoperation package for LEAP motion.
+**[リモートPC]** LEAP motion用の遠隔操作パッケージを実行します。
 
 ``` bash
 $ rosrun leap_motion sender.py
@@ -177,7 +177,7 @@ $ rosrun leap_motion sender.py
 
 ### [Myo](#myo)
 
-We are developing its contents ! 
+コンテンツの開発を進めています。
 {: .notice--info}
 
 [bringup]: /docs/en/platform/turtlebot3/bringup/#bringup

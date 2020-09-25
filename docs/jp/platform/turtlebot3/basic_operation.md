@@ -5,7 +5,7 @@ ref: basic_operation
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/basic_operation/
+permalink: /docs/jp/platform/turtlebot3/basic_operation/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -23,30 +23,29 @@ page_number: 15
 <div class="notice--success">{{ notice_02 | markdownify }}</div>
 
 ## [Topic Monitor](#topic-monitor)
-- [Topic Monitor][topic_monitor]: Display all the topics of TurtleBot3 using Topic Monitor plugin of RQT.
+- [Topic Monitor][topic_monitor]：RQTのTopic Monitorプラグインを使用して、TurtleBot3の全トピックを表示します。
 
-## [Teleoperation](#teleoperation)
-- [Teleoperation][teleoperation]: Control the TurtleBot3 using wireless devices such as PS3, XBOX 360, ROBOTIS RC100 and etc.
+## [遠隔操作](#teleoperation)
+- [遠隔操作][teleoperation]：PS3、XBOX 360、ROBOTIS RC100などの無線機器を使ってTurtleBot3を遠隔操作します。
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/Z4s18hlazb4" frameborder="0" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
-{: .notice--warning} 
+## [基本例](#basic-examples)
+- [基本例][basic_examples]：基本的な例には、以下に示すような様々なコンテンツがあります。
 
-## [Basic Examples](#basic-examples)
-- [Basic Examples][basic_examples]: It contains various basic examples such as the following.
-  - Move using Interative Marker on RViz
-  - Move and Stop using LDS
-  - Move to goal position
-  - Move to custom routes
+  - RViz上でのインタラクティブマーカを使った移動
+  - LDSを使った移動と停止
+  - ゴール位置までの移動
+  - カスタム経路を移動
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Xg1pKFQY5p4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
-{: .notice--warning} 
+e-Manualの内容は、予告なしで更新される場合があります。そのため、いくつかの動画はe-Manualの内容と異なる場合があります。
 
-## [Additional Sensors](#additional-sensors)
-- [Additional Sensors][additional_sensors]: Let's use IR sensor, ultrasonic sensor, switch, etc. in OpenCR of TurtleBot3.
+{: .notice--warning}
+
+## [センサの追加](#additional-sensors)
+- [センサの追加][additional_sensors]：IRセンサ、超音波センサ、スイッチ等をTurtleBot3のOpenCRで使いましょう。
 
 [topic_monitor]: /docs/en/platform/turtlebot3/topic_monitor/
 [teleoperation]: /docs/en/platform/turtlebot3/teleoperation/

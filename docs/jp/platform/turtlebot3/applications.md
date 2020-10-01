@@ -193,7 +193,7 @@ $ rosrun rviz rviz -d `rospack find turtlebot3_automatic_parking`/rviz/turtlebot
 **[Remote PC]** 自動駐車ファイルを起動します。
 
 ``` bash
-$ roslaunch turtlebot3_automatic_parking turtlebot3_automatic_parking.launch  
+$ roslaunch turtlebot3_automatic_parking turtlebot3_automatic_parking.launch
 ```
 
 - RVizでLaserScanトピックを選択できます。
@@ -260,7 +260,7 @@ $ roslaunch turtlebot3_automatic_parking_vision turtlebot3_automatic_parking_vis
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dvpWdrD3bVs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
-{: .notice--warning} 
+{: .notice--warning}
 
 ## [複数のTurtlebBot3をロードする](複数のTurtlebBot3をロードする)
 

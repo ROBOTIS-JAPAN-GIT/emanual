@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: applications
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/applications/
+permalink: /docs/jp/platform/turtlebot3/applications/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -15,22 +15,22 @@ page_number: 28
 
 <div style="counter-reset: h1 14"></div>
 
-# [[ROS 1] Applications](#ros-1-applications)
+# [[ROS 1] アプリケーション](#ros-1-アプリケーション)
 
 {% capture notice_01 %}
-**NOTE**:
-- This instructions were tested on `Ubuntu 16.04` and `ROS Kinetic Kame`.
-- This instructions are supposed to be running on the remote PC. Please run the instructions below on your **Remote PC**. However, the part marked **[TurtleBot]** is the content that runs on SBC of TurtleBot3.
-- Make sure to run the [Bringup](/docs/en/platform/turtlebot3/bringup/#bringup) instructions before use of the instruction
+**注釈**：
+- この手順は、`Ubuntu16.04`と`ROSKineticKame`でテスト済みです。
+- この命令は、リモートPCを想定しています。 **リモートPC**で以下の手順を実行してください。ただし、**[TurtleBot]**とマークされた部分は、TurtleBot3のSBCで実行されるコンテンツです。
+- 命令を使用する前に、必ず[Bringup]（/docs/jp/platform/turtlebot3/bringup/＃bringup）の手順を実行してください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
-**TIP**: The terminal application can be found with the Ubuntu search icon on the top left corner of the screen. The shortcut key for running the terminal is `Ctrl`-`Alt`-`T`.
+**ヒント**: ターミナルアプリは、画面左上のUbuntu検索アイコンで見つけることができます。ターミナルのショートカットキーは、`Ctrl`-`Alt`-`T`です。
 {: .notice--success}
 
-This chapter shows some demos using TurtleBot3. In order to implement these demos, you have to install the [turtlebot3_applications][turtlebot3_applications] and [turtlebot3_applications_msgs][turtlebot3_applications_msgs] packages.
+この章では、TurtleBot3を使用したいくつかのデモを示します。 これらのデモを実装するには、[turtlebot3_applications][turtlebot3_applications]および[turtlebot3_applications_msgs][turtlebot3_applications_msgs]パッケージをインストールする必要があります。
 
-**[Remote PC]** Go to `catkin workspace` directory (/home/(user_name)/catkin_ws/src) and clone the turtlebot3_applications and turtlebot3_applications_msgs repository. Then run the `catkin_make` to build the new packages.
+**[リモートPC]** `catkinworkspace`ディレクトリ（/home/(user_name)/catkin_ws/src）に移動し、turtlebot3_applicationsおよびturtlebot3_applications_msgsリポジトリのクローンを作成します。 次に、`catkin_make`を実行して新しいパッケージをビルドします。
 
 ``` bash
 $ sudo apt-get install ros-kinetic-ar-track-alvar
@@ -41,16 +41,16 @@ $ git clone https://github.com/ROBOTIS-GIT/turtlebot3_applications_msgs.git
 $ cd ~/catkin_ws && catkin_make
 ```
 
-## [TurtleBot Follower Demo](#turtlebot-follower-demo)
+## [TurtleBotフォロワーデモ](#turtlebotフォロワーデモ)
 
 {% capture notice_02 %}
-**NOTE**:
-- The follower demo was implemented only using a 360 Laser Distance Sensor LDS-01. a classification algorithm is used based on previous fitting with samples of person and obstacles positions to take actions. It follows someone in front of the robot within a 50 centimeter range and 140 degrees.
-- Running the follower demo in an area with obstacles may not work well. Therefore, it is recommended to run the demo in an open area without obstacles.
+**注釈**:
+- フォロワーのデモは、360°レーザー距離センサ LDS-01だけを使用するように実装されました。 分類アルゴリズムは、アクションを実行するために人と障害物の位置サンプルを使用した直前のフィッティングに基づいて使用されます。 これは、50cmの範囲と140°の範囲内でロボットの前にいる誰かを追跡します。
+- 障害物のあるエリアでフォロワーデモを実行すると、うまく機能しない場合があります。 したがって、障害物のないオープンエリアでデモを実行することを推奨します。
 {% endcapture %}
 <div class="notice--info">{{ notice_02 | markdownify }}</div>
 
-**[TurtleBot]** In order to run this demo, parameter in LIDAR launch file has to be modified. In the below example, Pluma is used to edit the launch file. In the param tag with `frame_id` as a name, replace `base_scan` to `odom` and save the file as shown in the below images.
+**[TurtleBot]** このデモを実行するには、LIDAR起動ファイルのパラメーターを変更する必要があります。 以下の例では、Plumaを使用して起動ファイルを編集しています。 名前に `frame_id`が付いたparamタグで、` base_scan`を`odom`に置き換え、次の図に示すようにファイルを保存します。
 
 ``` bash
 $ pluma ~/catkin_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_lidar.launch
@@ -61,10 +61,10 @@ $ pluma ~/catkin_ws/src/turtlebot3/turtlebot3_bringup/launch/turtlebot3_lidar.la
 
 ![](/assets/images/platform/turtlebot3/application/odom.png)
 
-**NOTE**: Turtlebot Follower Demo requires `scikit-learn`, `NumPy` and `ScyPy` packages.
+**注釈**：Turtlebot Follower Demoには、`scikit-learn`、`NumPy`、および `ScyPy`パッケージが必要です。
 {: .notice--info}
 
-**[Remote PC]** Install `scikit-learn`, `NumPy` and `ScyPy` packages with below commands.
+**[リモートPC]** 以下のコマンドを使用して、`scikit-learn`、`NumPy`、および`ScyPy`パッケージをインストールします。
 
 ``` bash
 $ sudo apt-get install python-pip
@@ -72,25 +72,25 @@ $ sudo pip install -U scikit-learn numpy scipy
 $ sudo pip install --upgrade pip
 ```
 
-**[Remote PC]** When installation is completed, run roscore on the remote pc with below command.
+**[リモートPC]** インストールが完了後、以下のコマンドを使用してリモートPCでroscoreを実行します。
 
 ``` bash
 $ roscore
 ```
 
-**[TurtleBot]** Launch the [bringup][bringup]
+**[TurtleBot]** [bringup][bringup]を起動します。
 
 ``` bash
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
 
-**[Remote PC]** Launch `turtlebot3_follow_filter` with below command.
+**[リモートPC]** 以下のコマンドで`turtlebot3_follow_filter`を起動します。
 
 ``` bash
 $ roslaunch turtlebot3_follow_filter turtlebot3_follow_filter.launch
 ```
 
-**[Remote PC]** Launch `turtlebot3_follower` with below command.
+**[リモートPC]** 以下のコマンドで `turtlebot3_follower`を起動します。
 
 ``` bash
 $ roslaunch turtlebot3_follower turtlebot3_follower.launch
@@ -98,49 +98,46 @@ $ roslaunch turtlebot3_follower turtlebot3_follower.launch
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/w9YTxZVY6yQ" frameborder="0" allowfullscreen></iframe>
 
+## [TurtleBotパノラマデモ](#TurtleBotパノラマデモ)
 
-## [TurtleBot Panorama Demo](#turtlebot-panorama-demo)
-
-{% capture notice_03 %}
-**NOTE**:
-- The `turtlebot3_panorama` demo uses `pano_ros` for taking snapshots and stitching them together to create panoramic image.
-- Panorama demo requires to install `raspicam_node` package. Instructions for installing this package can be found at [Gihub Link](https://github.com/UbiquityRobotics/raspicam_node)
-- Panorama demo requires to install OpenCV and cvbridge packages. Instructions for installing OpenCV can be found at [OpenCV Tutorial Link](http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html)
+**注釈**：
+- `turtlebot3_panorama`デモでは、`pano_ros`を使用してスナップショットを撮り、それらをつなぎ合わせてパノラマ画像を作成します。
+- パノラマデモでは、 `raspicam_node`パッケージをインストールする必要があります。このパッケージのインストール手順は、[Gihubリンク](https://github.com/UbiquityRobotics/raspicam_node)にあります。
+- パノラマデモでは、OpenCVおよびcvbridgeパッケージをインストールする必要があります。OpenCVのインストール手順は、[OpenCVチュートリアルリンク](http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html)にあります。
 {% endcapture %}
 <div class="notice--info">{{ notice_03 | markdownify }}</div>
 
-**[TurtleBot]** Launch the `turtlebot3_rpicamera` file
+**[TurtleBot]** `turtlebot3_rpicamera`を起動します。
 
 ``` bash
 $ roslaunch turtlebot3_bringup turtlebot3_rpicamera.launch
 ```
 
-**[Remote PC]** Launch `panorama` with below command.
+**[リモートPC]** 以下のコマンドで、`panorama`を起動します。
 
 ``` bash
 $ roslaunch turtlebot3_panorama panorama.launch
 ```
 
-**[Remote PC]** To start the panorama demo, please enter below command.
+**[リモートPC]** パノラマデモを開始するには、以下のコマンドを入力してください。
 
 ``` bash
 $ rosservice call turtlebot3_panorama/take_pano 0 360.0 30.0 0.3
 ```
 
-Parameters that can be sent to the rosservice to get a panoramic image are:
+パノラマ画像を取得するためにrosserviceに送信できるパラメータは次のとおりです。
 
-- Mode for taking the pictures.
+- 写真を撮るためのモード。
 
-    - 0 : snap&rotate (i.e. rotate, stop, snapshot, rotate, stop, snapshot, ...)  
-    - 1 : continuous (i.e. keep rotating while taking snapshots)  
-    - 2 : stop taking pictures and create panoramic image  
+    - 0 : スナップ＆回転（つまり、回転、停止、スナップショット、回転、停止、スナップショットなど）
+    - 1 : 継続的（つまり、スナップショットを撮りながら回転し続ける）
+    - 2 : 写真の撮影をやめてパノラマ画像を作成する
 
-- Total angle of panoramic image, in degrees
-- Angle interval (in degrees) when creating the panoramic image in snap&rotate mode, time interval (in seconds) otherwise
-- Rotating velocity (in radians/s)
+- パノラマ画像の全角度（度単位）
+- スナップ＆回転モードでパノラマ画像を作成する場合の角度間隔（度単位）、それ以外の場合は時間間隔（秒単位）
+- 回転速度（ラジアン/秒）
 
-
-**[Remote PC]** To view the result image, please enter below command.
+**[リモートPC]** 結果画像を表示するには、以下のコマンドを入力してください。
 
 ``` bash
 $ rqt_image_view image:=/turtlebot3_panorama/panorama
@@ -148,16 +145,16 @@ $ rqt_image_view image:=/turtlebot3_panorama/panorama
 
 ![](/assets/images/platform/turtlebot3/application/panorama_view.png)
 
-## [Automatic Parking](#automatic-parking)
+## [自動駐車](#自動駐車)
 
 {% capture notice_04 %}
-**NOTE**:
-- The `turtlebot3_automatic_parking` demo was using a 360 laser Distance Sensor LDS-01 and a reflective tape. The LaserScan topic has intensity and distance data from LDS. The TurtleBot3 uses this to locate the reflective tape.
-- The `turtlebot3_automatic_parking` demo requires `NumPy` package.
+**注釈**:
+- `turtlebot3_automatic_parking`デモは、360°レーザー距離センサ LDS-01と反射テープを使用しました。 LaserScanトピックには、LDSからの強度と距離のデータがあります。 TurtleBot3は、これを使用して反射テープを見つけます。
+- `turtlebot3_automatic_parking`デモには、`NumPy`パッケージが必要です。
 {% endcapture %}
 <div class="notice--info">{{ notice_04 | markdownify }}</div>
 
-**[Remote PC]** Install `NumPy` package with below commands. If you already installed numpy, you can **skip** below commands.
+**[リモートPC]** 以下のコマンドで `NumPy`パッケージをインストールします。 すでにnumpyをインストールしている場合は、以下のコマンドを**スキップ**できます。
 
 ``` bash
 $ sudo apt-get install python-pip
@@ -165,41 +162,41 @@ $ sudo pip install -U numpy
 $ sudo pip install --upgrade pip
 ```
 
-**[Remote PC]** Run roscore.
+**[リモートPC]** roscoreを実行します。
 
 ```bash
 $ roscore
 ```
 
-**[TurtleBot]** Bring up basic packages to start TurtleBot3 applications.
+**[TurtleBot]** TurtleBot3アプリケーションを起動するための基本パッケージを起動します。
 
 ```bash
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
 
-**[Remote PC]** If you use TurtleBot3 Burger, set the model of TurtleBot3 like command below.
+**[リモートPC]** TurtleBot3 Burgerを使用する場合は、以下のコマンドの用にTurtleBot3のモデルを設定します。
 
-**TIP**: Before executing this command, you have to specify the model name of TurtleBot3. The `${TB3_MODEL}` is the name of the model you are using in `burger`, `waffle`, `waffle_pi`. If you want to permanently set the export settings, please refer to [Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup} page.
+**ヒント**： このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。 `$ {TB3_MODEL}`は、 `burger`、`waffle`、`waffle_pi`で使用しているモデルの名前です。エクスポート設定を永続的に設定する場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup}を参照してください。
 {: .notice--success}
 
 ```bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 ```
 
-**[Remote PC]** Run RViz.
+**[リモートPC]** Rvizを起動します。
 
 ```bash
 $ roslaunch turtlebot3_bringup turtlebot3_remote.launch
 $ rosrun rviz rviz -d `rospack find turtlebot3_automatic_parking`/rviz/turtlebot3_automatic_parking.rviz
 ```
 
-**[Remote PC]** Launch the automatic parking file.
+**[Remote PC]** 自動駐車ファイルを起動します。
 
 ``` bash
 $ roslaunch turtlebot3_automatic_parking turtlebot3_automatic_parking.launch  
 ```
 
-- You can select LaserScan topic in RViz.
+- RVizでLaserScanトピックを選択できます。
 
 - `/scan`
 
@@ -212,48 +209,48 @@ $ roslaunch turtlebot3_automatic_parking turtlebot3_automatic_parking.launch
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IRtdxoPo8Y8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
-## [Automatic Parking Vision](#automatic-parking-vision)
+## [ビジョンベースの自動駐車](#ビジョンベースの自動駐車)
 
 {% capture notice_05 %}
-**NOTE**:
-- The `turtlebot3_automatic_parking_vision` uses raspberry pi camera and so the robot which is a default platform used for this demo is TurtleBot3 Waffle Pi. Since it parks from finding out AR marker on some wall, printed AR marker should be prepared. Whole process uses the image get from the camera, so if the process is not well being done, configure the parameters, such as brightness, contrast, etc.
-- The `turtlebot3_automatic_parking_vision` uses rectified image based on `image_proc` nodes. To get rectified image, the robot should get optic calibration data for raspberry pi camera. (Every downloaded turtlebot3 packages already have the camera calibration data as raspberry pi camera v2 default.)
-- The `turtlebot3_automatic_parking_vision` package requires `ar_track_alvar` package.
+**注釈**：
+- `turtlebot3_automatic_parking_vision`はラズベリーパイカメラを使用しているため、このデモで使用されるデフォルトのプラットフォームであるロボットはTurtleBot3 Waffle Piです。ARマーカを見つけて駐車するため、壁に印刷したARマーカーを用意する必要があります。 プロセス全体でカメラから取得した画像が使用されるため、プロセスが適切に行われていない場合は、明るさ、コントラストなどのパラメーターを構成します。
+- `turtlebot3_automatic_parking_vision`は、 `image_proc`ノードに基づいて修正された画像を使用します。 修正された画像を取得するには、ロボットはラズベリーパイカメラの光学キャリブレーションデータを取得する必要があります。(ダウンロードされたすべてのturtlebot3パッケージには、ラズベリーパイカメラv2のデフォルトとしてカメラキャリブレーションデータがすでに含まれています。)
+- `turtlebot3_automatic_parking_vision`パッケージには `ar_track_alvar`パッケージが必要です。
 {% endcapture %}
 <div class="notice--info">{{ notice_05 | markdownify }}</div>
 
 
-**[Remote PC]** Run roscore.
+**[リモートPC]** roscoreを実行します。
 
 ```bash
 $ roscore
 ```
 
-**[TurtleBot]** Bring up basic packages to start TurtleBot3 applications.
+**[TurtleBot]** 基本的なパッケージを起動して、TurtleBot3アプリケーションを起動します。
 
 ```bash
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
 
-**[TurtleBot]** Start the raspberry pi camera nodes.
+**[TurtleBot]** ラズベリーパイカメラノードを起動します。
 
 ```bash
 $ roslaunch turtlebot3_bringup turtlebot3_rpicamera.launch
 ```
 
-**[Remote PC]** Raspberry pi package will publish compressed type image for fast communication. However, what will be needed in image rectification in `image_proc` node is raw type image. Hence, compressed image should be transform to raw image.
+**[リモートPC]** ラズベリーパイのパッケージは、高速通信のために圧縮タイプのイメージを公開します。 ただし、 `image_proc`ノードでの画像修正に必要なのはrawタイプの画像です。 したがって、圧縮された画像は生の画像に変換する必要があります。
 
 ```bash
 $ rosrun image_transport republish compressed in:=raspicam_node/image raw out:=raspicam_node/image
 ```
 
-**[Remote PC]** Then, the image rectification should be carried out.
+**[リモートPC]** 次に、画像の修正を実行する必要があります。
 
 ```bash
 $ ROS_NAMESPACE=raspicam_node rosrun image_proc image_proc image_raw:=image _approximate_s=true _queue_size:=20
 ```
 
-**[Remote PC]** Now should start the AR marker detection. Before running related launch file, the model of what will be used by this example code should be exported. After running the launch file, RViz will be automatically run under preset environments.
+**[リモートPC]** これでARマーカーの検出が開始されます。 関連する起動ファイルを実行する前に、このサンプルコードで使用されるモデルをエクスポートする必要があります。 起動ファイルを実行した後、RVizは事前に設定された環境で自動的に実行されます。
 
 ```bash
 $ export TURTLEBOT3_MODEL=waffle_pi
@@ -262,35 +259,35 @@ $ roslaunch turtlebot3_automatic_parking_vision turtlebot3_automatic_parking_vis
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dvpWdrD3bVs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
-## [Load Multiple TurtleBot3s](#load-multiple-turtlebot3s)
+## [複数のTurtlebBot3をロードする](複数のTurtlebBot3をロードする)
 
-**NOTE**: This application must be set firmware version `1.2.1` or higher.
+**注釈**：このアプリケーションは、ファームウェアバージョン `1.2.1`以降に設定する必要があります。
 {: .notice--info}
 
-**[Remote PC]** Run roscore.
+**[リモートPC]** roscoreを実行します。
 
 ```bash
 $ roscore
 ```
 
-Bringup multiple turtlebot3s with different namespace. We recommend the namespace includes common words such as `tb3_0`, `tb3_1` or `my_robot_0`, `my_robot_1`
+名前空間が異なる複数のturtlebot3を起動します。 名前空間には、`tb3_0`、`tb3_1`または `my_robot_0`、`my_robot_1`などの一般的な単語を含めることを推奨します。
 
-**[TurtleBot(tb3_0)]** Bring up basic packages with `ROS NAMESPACE` for nodes, `multi_robot_name` for tf prefix and `set_lidar_frame_id` for lidar frame id. This parameters must be the same.
+**[TurtleBot（tb3_0）]** ノードに`ROS NAMESPACE`、tfプレフィックスに` multi_robot_name`、LIDARフレームIDに`set_lidar_frame_id`を含む基本パッケージを起動します。 このパラメータは同じである必要があります。
 
 ```bash
 $ ROS_NAMESPACE=tb3_0 roslaunch turtlebot3_bringup turtlebot3_robot.launch multi_robot_name:="tb3_0" set_lidar_frame_id:="tb3_0/base_scan"
 ```
 
-**[TurtleBot(tb3_1)]** Bring up basic packages with `ROS NAMESPACE` for nodes, `multi_robot_name` for tf prefix and `set_lidar_frame_id` for lidar frame id. This parameters must be the same but different other robots.
+**[TurtleBot（tb3_1）]** ノードに`ROS NAMESPACE`、tfプレフィックスに` multi_robot_name`、LIDARフレームIDに`set_lidar_frame_id`を含む基本パッケージを起動します。 このパラメータは同じである必要がありますが、他のロボットは異なります。
 
 ```bash
 $ ROS_NAMESPACE=tb3_1 roslaunch turtlebot3_bringup turtlebot3_robot.launch multi_robot_name:="tb3_1" set_lidar_frame_id:="tb3_1/base_scan"
 ```
 
-Then the terminal you launched `tb3_0` will represents below messages. You can watch TF messages have prefix `tb3_0`
+次に、`tb3_0`を起動した端末が以下のメッセージを表します。 TFメッセージのプレフィックスが `tb3_0`となっている事が確認できます。
 
 ```
 SUMMARY
@@ -344,7 +341,7 @@ process[tb3_0/turtlebot3_diagnostics-3]: started with pid [1905]
 [INFO] [1531356282.054785]: Start Calibration of Gyro
 [INFO] [1531356284.585490]: Calibration End
 ```
-**[Remote PC]** Launch robot state publisher with same namespace.
+**[リモートPC]** 同一の名前空間でロボットステートパブリッシャーを起動します。
 
 ```bash
 $ ROS_NAMESPACE=tb3_0 roslaunch turtlebot3_bringup turtlebot3_remote.launch multi_robot_name:=tb3_0
@@ -354,7 +351,7 @@ $ ROS_NAMESPACE=tb3_0 roslaunch turtlebot3_bringup turtlebot3_remote.launch mult
 $ ROS_NAMESPACE=tb3_1 roslaunch turtlebot3_bringup turtlebot3_remote.launch multi_robot_name:=tb3_1
 ```
 
-Before start another application, check topics and TF tree to open rqt
+別のアプリケーションを起動する前に、rqtを開きTFツリーとトピックを確認します。
 
 ```bash
 $ rqt
@@ -362,7 +359,7 @@ $ rqt
 
 ![](/assets/images/platform/turtlebot3/application/multi_turtlebot_rqt.png)
 
-To use this setup, each turtlebot3 makes map using SLAM and these maps are merged simutaneously by [multi_map_merge][multi_map_merge] packages. You can get more information about this to visit [Virtual SLAM by Multiple TurtleBot3s][Virtual SLAM by Multiple TurtleBot3s] sections
+この設定を使用するために、各TurtleBot3はSLAMを使用してマップを作成し、これらのマップは[multi_map_merge][multi_map_merge]パッケージによって同時にマージされます。 詳細については、[複数のTurtleBot3による仮想SLAM][複数のTurtleBot3による仮想SLAM]セクションを参照してください。
 
 [turtlebot3_applications]: https://github.com/ROBOTIS-GIT/turtlebot3_applications
 [turtlebot3_applications_msgs]: https://github.com/ROBOTIS-GIT/turtlebot3_applications_msgs
@@ -371,4 +368,4 @@ To use this setup, each turtlebot3 makes map using SLAM and these maps are merge
 [export_turtlebot3_model]: /docs/en/platform/turtlebot3/export_turtlebot3_model
 [ar_track_alvar]: http://wiki.ros.org/ar_track_alvar
 [multi_map_merge]: http://wiki.ros.org/multirobot_map_merge
-[Virtual SLAM by Multiple TurtleBot3s]: /docs/en/platform/turtlebot3/simulation/#2-excute-slam
+[複数のTurtleBot3による仮想SLAM]]: /docs/en/platform/turtlebot3/simulation/#2-excute-slam

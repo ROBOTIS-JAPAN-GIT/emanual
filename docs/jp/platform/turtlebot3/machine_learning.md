@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: machine_learning
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/machine_learning/
+permalink: /docs/jp/platform/turtlebot3/machine_learning/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -15,67 +15,66 @@ page_number: 27
 
 <div style="counter-reset: h1 13"></div>
 
-# [[ROS 1] Machine Learning](#ros-1-machine-learning)
+# [[ROS 1]機械学習](＃ros-1機械学習)
 
-Machine learning is a data analysis technique that teaches computers to recognize what is natural for people and animals - learning through experience. There are three types of machine learning: supervised learning, unsupervised learning, reinforcement learning.
+機械学習は、コンピューターに人や動物にとって自然なことを認識するように教えるデータ分析手法です。つまり、経験を通じて学習します。 機械学習には、教師あり学習、教師なし学習、強化学習の3種類があります。
 
-This application is reinforcement learning with DQN (Deep Q-Learning). The reinforcement learning is concerned with how software agents ought to take actions in an environment so as to maximize some notion of cumulative reward.
+このアプリケーションは、DQN（Deep Q-Learning）による強化学習です。 強化学習は、累積報酬の概念を最大化するために、ソフトウェアエージェントが環境内でどのように行動を起こすべきかに関するものです。
 
 <iframe width="854" height="480" src="https://www.youtube.com/embed/WADmP0wzLxs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
-This shows reinforcement learning with TurtleBot3 in gazebo.
-This reinforcement learning is applied DQN(Deep Q-Learning) algorithm with LDS.  
-We are preparing a four-step reinforcement learning tutorial.
+これは、gazeboでTurtleBot3を使用した強化学習を示しています。
+この強化学習は、LDSでDQN(Deep Q-Learning)アルゴリズムを適用します。
+4段階の強化学習チュートリアルを準備しています。
 
-## [Installation](#installation)
-To do this tutorial, you need to install Tensorflow, Keras and Anaconda with Ubuntu 16.04 and ROS kinetic.
+## [インストール](＃インストール)
+このチュートリアルを行うには、Ubuntu 16.04とROS kineticを使用してTensorflow、Keras、Anacondaをインストールする必要があります。
 
 <iframe width="854" height="480" src="https://www.youtube.com/embed/s0qgunKt654" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ### [Anaconda](#anaconda)
-You can download [Anaconda 5.2](https://www.anaconda.com/download/#linux) for Python 2.7 version.
+Python2.7バーション用のの[Anaconda 5.2](https://www.anaconda.com/download/#linux)をダウンロードできます。
 
-After downloading Andaconda, go to the directory in located download file and enter the follow command.
+Anacondaをダウンロード後、ダウンロードファイルを配置したディレクトリへ行き、次のコマンドを入力します。
 
 ``` bash
 $ bash Anaconda2-x.x.x-Linux-x86_64.sh
 ```
 
-After installing Anaconda,
+Anacondaインストール後、
 ``` bash
 $ source ~/.bashrc
 $ python -V
 ```
-If Anaconda is installed, you can see `Python 2.7.xx :: Anaconda, Inc.`.
+Anacondaがインストールされている場合は、`Python 2.7.xx :: Anaconda, Inc.`が表示されます。
 
-### [ROS dependency packages](#ros-dependency-packages)
-To use ROS and Anaconda together, you must additionally install ROS dependency packages.
+### [ROS依存関係パッケージ](＃ROS依存関係パッケージ)
+ROSとAnacondaを一緒に使用するには、ROS依存関係パッケージを追加でインストールする必要があります。
 ``` bash
 $ pip install -U rosinstall msgpack empy defusedxml netifaces
 ```
 
 ### [Tensorflow](#tensorflow)
-You can install [TensorFlow](https://www.tensorflow.org/install/).  
+[TensorFlow](https://www.tensorflow.org/install/)をインストールできます。
 ``` bash
 $ conda create -n tensorflow pip python=2.7
 ```
-This tutorial is used python 2.7(CPU only). If you want to use another python version and GPU, please refer to [TensorFlow](https://www.tensorflow.org/install/).
+このチュートリアルは、python2.7(CPUのみ)で使用されます。別のPythonバージョンとGPUを使用する場合は、[TensorFlow](https://www.tensorflow.org/install/)を参照してください。
 ``` bash
 $ pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.8.0-cp27-none-linux_x86_64.whl
 ```
 
 ### [Keras](#keras)
-[Keras](https://keras.io/) is a high-level neural networks API, written in Python and capable of running on top of TensorFlow.
-
+[Keras](https://keras.io/)は、Pythonで記述された高レベルのニューラルネットワークAPIであり、TensorFlow上で実行できます。
 ``` bash
 $ pip install keras==2.1.5
 ```
 
-### [Machine Learning packages](#machine-learning-packages)
-**WARNING**: Please install [turtlebot3](https://github.com/ROBOTIS-GIT/turtlebot3), [turtlebot3_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_msgs) and [turtlebot3_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations) package before installing this package.
+### [機械学習パッケージ](#機械学習パッケージ)
+**警告**: このパッケージをインストールする前に[turtlebot3](https://github.com/ROBOTIS-GIT/turtlebot3),[turtlebot3_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_msgs)および [turtlebot3_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)パッケージをインストールしてください。
 {: .notice--warning}
 
 ``` bash
@@ -83,20 +82,20 @@ $ cd ~/catkin_ws/src/
 $ git clone https://github.com/ROBOTIS-GIT/turtlebot3_machine_learning.git
 $ cd ~/catkin_ws && catkin_make
 ```
-## [Set parameters](#set-parameters)
+## [パラメータの設定](#パラメータの設定)
 
-The goal of DQN Agent is to get the TurtleBot3 to the goal avoiding obstacles. When TurtleBot3 gets closer to the goal, it gets a positive reward, and when it gets farther it gets a negative reward.
-The episode ends when the TurtleBot3 crashes on an obstacle or after a certain period of time. During the episode, TurtleBot3 gets a big  positive reward when it gets to the goal, and TurtleBot3 gets a big negative reward when it crashes on an obstacle.
+DQN Agentの目標は、障害物を回避してTurtleBot3を目標に到達させることです。 TurtleBot3が目標に近づくと、正の報酬を受け取り、遠くに近づくと、負の報酬を受け取ります。
+エピソードは、TurtleBot3が障害物に衝突したとき、または一定期間後に終了します。 エピソード中、TurtleBot3はゴールに到達すると大きなプラスの報酬を受け取り、TurtleBot3は障害物に衝突すると大きなマイナスの報酬を受け取ります。
 
 <iframe width="1236" height="695" src="https://www.youtube.com/embed/807_cByUBSI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
-### [Set state](#set-state)
-State is an observation of environment and describes the current situation. Here, `state_size` is 26 and has 24 LDS values, distance to goal, and angle to goal.
+### [状態の設定](#状態の設定)
+状態は環境の観察であり、現在の状況を説明します。ここで、`state_size`は26、24のLDS値、ゴールまでの距離、ゴールまでの角度があります。
 
-Turtlebot3's LDS default is set to 360. You can modify sample of LDS at `turtlebot3/turtlebot3_description/urdf/turtlebot3_burger.gazebo.xacro`.
+Turtlebot3のLDSのデフォルトは360に設定されています。LDSのサンプルは `turtlebot3/turtlebot3_description/urdf/turtlebot3_burger.gazebo.xacro`で変更できます。
 
 ``` bash
 <xacro:arg name="laser_visual" default="false"/>   # Visualization of LDS. If you want to see LDS, set to `true`
@@ -116,10 +115,10 @@ Turtlebot3's LDS default is set to 360. You can modify sample of LDS at `turtleb
 |:--:|:--:|
 |**sample = 360**|**sample = 24**|
 
-### [Set action](#set-action)
-Action is what an agent can do in each state. Here, turtlebot3 has always 0.15 m/s of linear velocity. angular velocity is determined by action.
+### [アクションの設定](＃set-action)
+アクションは、エージェントが各状態で実行できることです。 ここで、turtlebot3の線速度は常に0.15 m/sです。 角速度は作用によって決定されます。
 
-|Action|Angular velocity(rad/s)|
+|アクション|角速度(rad/s)|
 |:--:|:--:|
 |0   |-1.5|
 |1   |-0.75|
@@ -127,56 +126,59 @@ Action is what an agent can do in each state. Here, turtlebot3 has always 0.15 m
 |3   |0.75|
 |4   |1.5 |
 
-### [Set reward](#set-reward)
-When turtlebot3 takes an action in a state, it receives a reward. The reward design is very important for learning. A reward can be positive or negative. When turtlebot3 gets to the goal, it gets big positive reward. When turtlebot3
-collides with an obstacle, it gets big negative reward. If you want to apply your reward design, modify `setReward` function at  `/turtlebot3_machine_learning/turtlebot3_dqn/src/turtlebot3_dqn/environment_stage_#.py`.
+### [報酬の設定](#報酬の設定)
+turtlebot3がある状態でアクションを実行すると、報酬を受け取ります。 報酬のデザインは学習にとって非常に重要です。 報酬はプラス/マイナスの両方になり得ます。 turtlebot3がゴールに到達すると、大きなプラスの報酬が得られます。 turtlebot3が障害物と衝突すると、大きなマイナスの報酬が得られます。 報酬デザインを適用する場合は、 `/turtlebot3_machine_learning/turtlebot3_dqn/src/turtlebot3_dqn/environment_stage_＃.py`にある`setReward`関数を変更します。
 
 ### [Set hyper parameters](#set-hyper-parameters)
 This tutorial has been learned using DQN. DQN is a reinforcement learning method that selects a deep neural network by approximating the action-value function(Q-value). Agent has follow hyper parameters at `/turtlebot3_machine_learning/turtlebot3_dqn/nodes/turtlebot3_dqn_stage_#`.
 
-|Hyper parameter|default|description|
-|:--:|:--:|:--:|
-|episode_step   |   6000   |   The time step of one episode.    |
-|target_update  |   2000   |   Update rate of target network.   |
-|discount_factor|   0.99   | Represents how much future events lose their value according to how far away.|
-|learning_rate  |  0.00025 | Learning speed. If the value is too large, learning does not work well, and if it is too small, learning time is long.  |
-|epsilon        | 1.0      | The probability of choosing a random action.|
-|epsilon_decay  | 0.99     | Reduction rate of epsilon. When one episode ends, the epsilon reduce. |
-|epsilon_min    | 0.05     | The minimum of epsilon.|
-|batch_size     |   64     | Size of a group of training samples. |
-|train_start    |   64     | Start training if the replay memory size is greater than 64.|
-|memory         |  1000000 | The size of replay memory.|
+### [ハイパーパラメータの設定](#ハイパーパラメータの設定)
+このチュートリアルは、DQNを使用して学習しました。 DQNは、アクション値関数（Q値）を近似することによってディープニューラルネットワークを選択する強化学習法です。 エージェントは、`/turtlebot3_machine_learning/turtlebot3_dqn/nodes/turtlebot3_dqn_stage_＃`にあるハイパーパラメータに従います。
 
+|ハイパーパラメータ|デフォルト|説明|
+|：-：|：-：|：-：|
+| Episode_step    |   6000    | 1つのエピソードのタイムステップ|
+| target_update   |   2000    | ターゲットネットワークの更新レート|
+| discount_factor |   0.99    | 距離に応じて、将来のイベントがどれだけ価値を失うかを表します|
+| Learning_rate   |   0.00025 | 学習速度。値が大きすぎると学習がうまくいかず、小さすぎると学習時間が長くなります|
+|epsilon          |   1.0     | ランダムなアクションを選択する確率|
+| epsilon_decay   |   0.99    | イプシロンの減少率。1つのエピソードが終了すると、イプシロンは減少します|
+| epsilon_min     |   0.05    | イプシロンの最小値|
+| batch_size      |   64      | トレーニングサンプルのグループのサイズ|
+| train_start     |   64      | リプレイメモリサイズが64より大きい場合は、トレーニングを開始します|
+|メモリ            |   1000000 | リプレイメモリのサイズ|
 
-## [Run Machine Learning](#run-machine-learning)
+## [機械学習の実行](#機械学習の実行])
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/5uIZU8PCHT8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-### [Stage 1 (No Obstacle)](#stage-1-no-obstacle)
-Stage 1 is a 4x4 map with no obstacles.
+### [ステージ1 (障害物なし)](#ステージ1-障害物なし)
+ステージ1は、障害物のない4x4のマップです。
 
 ![](/assets/images/platform/turtlebot3/machine_learning/stage_1.jpg)
 ``` bash
 $ roslaunch turtlebot3_gazebo turtlebot3_stage_1.launch
 $ roslaunch turtlebot3_dqn turtlebot3_dqn_stage_1.launch
 ```
-### [Stage 2 (Static Obstacle)](#stage-2-static-obstacle)
-Stage 2 is a 4x4 map with four cylinders of static obstacles.
+
+### [ステージ2 (静的障害物)](#ステージ2-静的障害物)
+ステージ2は、4つのシリンダーの静的障害物がある4x4マップです。
 
 ![](/assets/images/platform/turtlebot3/machine_learning/stage_2.jpg)
 ``` bash
 $ roslaunch turtlebot3_gazebo turtlebot3_stage_2.launch
 $ roslaunch turtlebot3_dqn turtlebot3_dqn_stage_2.launch
 ```
-### [Stage 3 (Moving Obstacle)](#stage-3-moving-obstacle)
-Stage 2 is a 4x4 map with four cylinders of moving obstacles.
+
+### [ステージ3 (移動障害物)](#ステージ3-移動障害物)
+ステージ2は、移動する4つのシリンダーの障害物を含む4x4マップです。
 
 ![](/assets/images/platform/turtlebot3/machine_learning/stage_3.jpg)
 ``` bash
 $ roslaunch turtlebot3_gazebo turtlebot3_stage_3.launch
 $ roslaunch turtlebot3_dqn turtlebot3_dqn_stage_3.launch
 ```
-### [Stage 4 (Combination Obstacle)](#stage-4-combination-obstacle)
-Stage 4 is a 5x5 map with walls and two cylinders of moving obstacles.
+### [ステージ4(組み合わせの障害)](#ステージ4-組み合わせの障害物)
+ステージ4は、壁と2つの移動するシリンダーの障害物を備えた5x5のマップです。
 
 ![](/assets/images/platform/turtlebot3/machine_learning/stage_4.jpg)
 ``` bash
@@ -184,7 +186,7 @@ $ roslaunch turtlebot3_gazebo turtlebot3_stage_4.launch
 $ roslaunch turtlebot3_dqn turtlebot3_dqn_stage_4.launch
 ```
 
-If you want to see graph, launch the graph launch file.
+グラフをみたい場合は、グラフ起動ファイルを起動してください。
 
 ``` bash
 $ roslaunch turtlebot3_dqn result_graph.launch

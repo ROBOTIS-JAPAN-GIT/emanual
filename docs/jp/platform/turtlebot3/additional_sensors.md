@@ -1,6 +1,6 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: additional_sensors
 read_time: true
 share: true
@@ -20,97 +20,97 @@ page_number: 19
   <h1 id="basic-operation"><a href="#basic-operation">Basic Operation</a></h1>
 <![end dummy Header 1]-->
 
-## [Additional Sensors](#additional-sensors)
-TurtleBot3 can be attach to additional sensors. Examples shown here can be that how to use additional sensors such as IR, ultrasonic, switch, etc. in OpenCR of TurtleBot3.
+## [追加センサー](#additional-sensors)
+TurtleBot3には、追加センサーを取り付けることができます。ここでは、TurtleBot3のOpenCRで、赤外線、超音波、スイッチなどの追加センサーを使用する方法を例として示しています。
 
 
-### [Bumper](#Bumper)
- * Device - [Touch_sensor (TS-10)](http://emanual.robotis.com/docs/en/parts/sensor/ts-10/)
+### [バンパー](#Bumper)
+ * デバイス - [Touch_sensor (TS-10)](http://emanual.robotis.com/docs/en/parts/sensor/ts-10/)
 
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/touch_sensor.png)
 
-(Front side)
+(正面)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/touch_sensor_front.png)
 
-(Back side)
+(裏面)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/touch_sensor_back.png)
 
-* Default PIN      
+* デフォルトのピン      
 
-| Device       | PIN             |
+| デバイス       | ピン             |
 |:-------------|:----------------|
-| Front sensor | ROBOTIS_5-PIN 3 |
-| Back sensor  | ROBOTIS_5-PIN 4 |
+| Front sensor | ROBOTIS_5-ピン 3 |
+| Back sensor  | ROBOTIS_5-ピン 4 |
 
 
-**Tip :** If you want to use another PIN, refer to [OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
+**ヒント :** 他のピンを使用する場合には、[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
 {: .notice--info}
 
-* Run with Turtlebot3
+* Turtlebot3で実行
 
-**WARNING** : Make sure to run the [Bringup](#bringup) instruction before performing Example.
+**警告** : Exampleサンプルを実行する前に必ず[Bringup](#bringup)コマンドを実行してください。
 {: .notice--warning}
 
-**[Remote PC]** Launch the bumper launch file.
+**[リモートPC]** bumper launch fileを起動します。
 ``` bash
 $ roslaunch turtlebot3_example turtlebot3_bumper.launch
 ```
 
 
-* Run with Arduino IDE
+* Arduino IDEで実行
 
-This example can be open [Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide).
+このサンプルは、[Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide)で開くことができます。
 
-Select to `File` -> `Examples` -> `ROS` -> `2. Sensors` -> `a_Bumper`. Upload to OpenCR.
+`File` -> `Examples` -> `ROS` -> `2. Sensors` -> `a_Bumper`を選択して、OpenCRにアップロードします。
 
-**[Remote PC]** Run ros serial_node package.
+**[リモートPC]** ros serial_nodeパッケージを実行します。
 
 ``` bash
 $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/ttyACM0 _baud:=115200
 ```
 
-**WARNING** : If you upload examples to OpenCR, you have to re-upload [turtlebot3_core](http://emanual.robotis.com/docs/en/platform/turtlebot3/opencr_setup/#opencr-setup).
+**警告** : OpenCRにサンプルをアップロードする場合は、 [turtlebot3_core](http://emanual.robotis.com/docs/en/platform/turtlebot3/opencr_setup/#opencr-setup)を再アップロードする必要があります。
 {: .notice--warning}
 
 ### [IR](#IR)
 
-* Device - [IR_sensor (IRSS-10)](http://emanual.robotis.com/docs/en/parts/sensor/irss-10/)
+* デバイス - [IR_sensor (IRSS-10)](http://emanual.robotis.com/docs/en/parts/sensor/irss-10/)
 
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/IR_sensor.png)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/IR_sensor_front.png)
 
-* Default PIN
+* デフォルトピン
 
-| Device    | PIN             |
+| デバイス    | ピン             |
 |:----------|:----------------|
-| IR sensor | ROBOTIS_5-PIN 2 |
+| IRセンサ | ROBOTIS_5-PIN 2 |
 
-**Tip :** If you want to use another PIN, refer to [OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
+**ヒント :** 他のピンを使用する場合には、[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
 {: .notice--info}
 
-* Run with Turtlebot3
+* Turtlebot3で実行
 
-**WARNING** : Make sure to run the [Bringup](#bringup) instruction before performing Example.
+**警告** : サンプルを実行する前に必ず[Bringup](#bringup)コマンドを実行してください。
 {: .notice--warning}
 
-**[Remote PC]** Launch the cliff launch file.
+**[リモートPC]** cliff launch fileを起動します。
 ``` bash
 $ roslaunch turtlebot3_example turtlebot3_cliff.launch
 ```
 
 
-* Run with Arduino IDE
+* Arduino IDEで実行
 
 This example can be open [Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide).
 
-Select to `File` -> `Examples` -> `ROS` -> `2. Sensors` -> `b_Cliff`. Upload to OpenCR.
+`File` -> `Examples` -> `ROS` -> `2. Sensors` -> `b_Cliff`を選び、OpenCRへアップロードします・
 
-**[Remote PC]** Run ros serial_node package.
+**[リモートPC]** ros serial_nodeを実行します。
 
 ``` bash
 $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/ttyACM0 _baud:=115200
@@ -118,103 +118,103 @@ $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/tty
 
 
 
-### [Ultrasonic](#Ultrasonic)
-* Device - Ultrasonic sensor (HC-SR04)
+### [超音波センサ](#Ultrasonic)
+* デバイス - 超音波センサ (HC-SR04)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/sonar.png)
 
 
-* Default PIN:
+* デフォルトピン:
 
 
-| Device  | PIN          |
+| デバイス  | ピン          |
 |:--------|:-------------|
-| Trigger | BDPIN_GPIO_1 |
-| Echo    | BDPIN_GPIO_2 |
+| トリガ | BDPIN_GPIO_1 |
+| エコー    | BDPIN_GPIO_2 |
 
-**Tip :** If you want to use another PIN, refer to [OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
+**ヒント :** 他のピンを使用する場合には[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
 {: .notice--info}
 
-* Run with Turtlebot3
+* Turtlebot3にて実行
 
-**WARNING** : Make sure to run the [Bringup](#bringup) instruction before performing Example.
+**警告** : サンプルを実行する前に必ず[Bringup](#bringup)コマンドを実行してください。
 {: .notice--warning}
 
-**[Remote PC]** Launch the sonar launch file.
+**[リモートPC]** sonar launch fileを起動します。
 ``` bash
 $ roslaunch turtlebot3_example turtlebot3_sonar.launch
 ```
 
-* Run with Arduino IDE
+* Arduino IDEで実行
 
-This example can be open [Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide).
+このサンプルは、[Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide)で開くことができます。
 
-Select to `File` -> `Examples` -> `ROS` -> `2. Sensors` -> `c_Ultrasonic`. Upload to OpenCR.
+`File` -> `Examples` -> `ROS` -> `2. Sensors` -> `c_Ultrasonic`を選び、OpenCRへアップロードします。
 
-**[Remote PC]** Run ros serial_node package.
+**[リモートPC]** ros serial_node packageを実行します。
 
 ``` bash
 $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/ttyACM0 _baud:=115200
 ```
 
 
-### [Illumination](#Illumination)
-*  Device - LDR sensor (Flying-Fish MH-sensor)
+### [イルミネーション](#Illumination)
+*  デバイス - LDR sensor (Flying-Fish MH-sensor)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/illumination.png)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/illumination_front.png)
 
-*  Default PIN
+*  デフォルトピン
 
-| Device | PIN |
+| デバイス | ピン |
 |:-------|:----|
-| Analog | A1  |
+| アナログ | A1  |
 
-**Tip :** If you want to use another PIN, refer to [OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
+**ヒント :** 他のピンを使用する場合には、[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
 {: .notice--info}
 
-* Run with Turtlebot3
+* Turtlebot3で実行
 
-**WARNING** : Make sure to run the [Bringup](#bringup) instruction before performing Example.
+**警告** : サンプルを実行する前に必ず[Bringup](#bringup)コマンドを実行してください。
 {: .notice--warning}
 
-**[Remote PC]** Launch the illumination launch file.
+**[リモートPC]** illumination launch fileを起動します。
 ``` bash
 $ roslaunch turtlebot3_example turtlebot3_illumination.launch
 ```
 
-* Run with Arduino IDE
+* Arduino IDEで実行
 
-This example can be open [Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide).
+このサンプルは、[Arduino IDE](http://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide)で開くことができます。
 
-Select to `File` -> `Examples` -> `ROS` -> `2. Sensors` -> `d_Illumination`. Upload to OpenCR.
+`File` -> `Examples` -> `ROS` -> `2. Sensors` -> `d_Illumination`を選び、OpenCRへアップロードします。
 
-**[Remote PC]** Run ros serial_node package.
+**[リモートPC]** ros serial_node packageを実行します。
 
 ``` bash
 $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/ttyACM0 _baud:=115200
 ```
 
 ### [LED](#LED)
-*  Device - led (led101)
+*  デバイス - led (led101)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/led.png)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/led_top.png)
 
-*  Default PIN
+*  デフォルトピン
 
-| Device      | PIN           |
+| デバイス      | ピン           |
 |:------------|:--------------|
 | Front_left  | BDPIN_GPIO_4  |
 | Front_right | BDPIN_GPIO_6  |
 | Back_left   | BDPIN_GPIO_8  |
 | Back_right  | BDPIN_GPIO_10 |
 
-**Tip :** If you want to use another PIN, refer to [OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
+**ヒント :** 他のピンを使用する場合には、[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
 {: .notice--info}
 
-*  Run
+*  実行
 
-This example is allways active when connected led. the leds show a specific pattern depend on the linear and angular velocity of Turtlebot3.
+このサンプルでは、ledが接続されている場合は常にアクティブであり、ledはTurtlebot3の並進速度と角速度に依存して特定のパターンを示します。

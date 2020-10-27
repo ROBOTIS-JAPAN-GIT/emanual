@@ -5,7 +5,7 @@ ref: additional_sensors
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/additional_sensors/
+permalink: /docs/jp/platform/turtlebot3/additional_sensors/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -51,7 +51,7 @@ TurtleBot3には、追加センサーを取り付けることができます。�
 
 * Turtlebot3で実行
 
-**警告** : Exampleサンプルを実行する前に必ず[Bringup](#bringup)コマンドを実行してください。
+**警告** : サンプルを実行する前に必ず[Bringup](#bringup)コマンドを実行してください。
 {: .notice--warning}
 
 **[リモートPC]** bumper launch fileを起動します。

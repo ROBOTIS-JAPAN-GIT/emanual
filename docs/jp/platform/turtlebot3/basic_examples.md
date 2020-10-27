@@ -5,7 +5,7 @@ ref: basic_examples
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/basic_examples/
+permalink: /docs/jp/platform/turtlebot3/basic_examples/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -78,7 +78,7 @@ TurtleBot3は、LDSのデータによって移動・停止することができ�
 $ roslaunch turtlebot3_example turtlebot3_obstacle.launch
 ```
 
-### [Point Operation](#point-operation)
+### [座標指令](#point-operation)
 
 TurtleBot3は、2次元上の`点(x, y)`と`z-angular`で移動することができる。例えば、(0.5, 0.3, 60)を入れると、TurtleBot3は点(x = 0.5m, y = 0.3m)に移動し、60度回転します。
 

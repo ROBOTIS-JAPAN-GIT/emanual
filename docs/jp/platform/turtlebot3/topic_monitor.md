@@ -5,7 +5,7 @@ ref: topic_monitor
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/topic_monitor/
+permalink: /docs/jp/platform/turtlebot3/topic_monitor/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -20,7 +20,7 @@ page_number: 16
   <h1 id="basic-operation"><a href="#basic-operation">Basic Operation</a></h1>
 <![end dummy Header 1]-->
 
-## [Topic Monitor](#topic-monitor)
+## [トピックモニター](#トピックモニター)
 
 **警告**: ロボットをテーブルの上で動かす際には、ロボットが落下する可能性があるため注意してください。
 {: .notice--warning}
@@ -61,11 +61,11 @@ rqtを最初に実行すると、topicの値はモニターされません。top
 
 ![](/assets/images/platform/turtlebot3/example/rqt_5.png)
 
-- `/odom` は、TurtleBot3のオドメトリを示すメッセージです。このtopicはエンコーダ値による方位と位置を持っています。
+- `/odom` は、TurtleBot3のオドメトリを示すメッセージです。このtopicはエンコーダー値による方位と位置を持っています。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_6.png)
 
-- `/sensor_state` は、エンコーダ値、バッテリー、トルクをメッセージで表示しています。
+- `/sensor_state` は、エンコーダー値、バッテリー、トルクをメッセージで表示しています。
 
 ![](/assets/images/platform/turtlebot3/example/rqt_7.png)
 

@@ -27,14 +27,14 @@ page_number: 17
 {% capture notice_01 %}
 **注釈**：
 - このコマンドは `Ubuntu 16.04` と `ROS Kinetic Kame` でテストをしました。
-- この例は、リモートPCでの動作を想定しています。**リモートPC** の指示に従ってください。
+- この例は、リモートPCでの動作を想定しています。**リモートPC** の指示にしたがってください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
 **警告**：この例を実行する前に、必ず[Bringup][bringup]コマンドを実行してください。また、テーブルの上でロボットをテストする際には、ロボットが落下してしまう可能性があるため、注意してください。
 {: .notice--warning}
 
-TurtleBot3は、様々な機器での遠隔操作が可能です。PS3、 XBOX 360、 ROBOTIS RC100などの無線機器で動作確認をしています。ここで紹介した例（LEAP Motionを除く）は、Raspberry Pi 3のUbuntu mate 16.04上のROSとDYNAMIXELを制御するOpenCRによって起動することができます。
+TurtleBot3は、さまざまな機器での遠隔操作が可能です。PS3、 XBOX 360、 ROBOTIS RC100などの無線機器で動作確認をしています。ここで紹介した例（LEAP Motionを除く）は、Raspberry Pi 3のUbuntu mate 16.04上のROSとDYNAMIXELを制御するOpenCRによって起動できます。
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/Z4s18hlazb4" frameborder="0" allowfullscreen></iframe>
 
@@ -74,11 +74,11 @@ $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
 ### [RC100](#rc100)
 
-[ROBOTIS RC-100B][rc100]コントローラの設定は、TurtleBot3 Burger、Waffle、Waffle Pi用のOpenCRファームウェアに含まれています。このコントローラは、Bluetoothモジュール[BT410][BT410]と組み合わせて使用することができます。TurtleBot3 Waffle Piには、本コントローラとBluetoothモジュールが同梱されています。RC-100を使用する場合、`turtlebot_core`ノードはOpenCRに直結したファームウェア内に`/cmd_vel`トピックを作成するため、特定のノードを実行する必要はありません。
+[ROBOTIS RC-100B][rc100]コントローラーの設定は、TurtleBot3 Burger、Waffle、Waffle Pi用のOpenCRファームウェアに含まれています。このコントローラーは、Bluetoothモジュール[BT410][BT410]と組み合わせて使用できます。TurtleBot3 Waffle Piには、本コントローラーとBluetoothモジュールが同梱されています。RC-100を使用する場合、`turtlebot_core`ノードはOpenCRに直結したファームウェア内で`/cmd_vel`トピックを作成するため、特定のノードを実行する必要はありません。
 
 ![](/assets/images/platform/turtlebot3/example/rc100b_with_bt410.png)
 
-### [PS3ジョイステック](#ps3-joystick)
+### [PS3ジョイステック](#PS3ジョイステック)
 
 **[リモートPC]** PS3ジョイスティックとリモートPCをBluetoothまたはUSBケーブル経由で接続します。
 
@@ -94,9 +94,9 @@ $ sudo apt-get install ros-kinetic-joy ros-kinetic-joystick-drivers ros-kinetic-
 $ roslaunch teleop_twist_joy teleop.launch
 ```
 
-### [XBOX 360ジョイステック](#xbox-360-joystick)
+### [Xbox360ジョイステック](#Xbox360ジョイステック)
 
-**[リモートPC]** 360ジョイスティックとリモートPCをワイヤレスアダプタまたはUSBケーブルによって接続します。
+**[リモートPC]** 360ジョイスティックとリモートPCをワイヤレスアダプターまたはUSBケーブルによって接続します。
 
 **[リモートPC]** XBOX 360ジョイスティックを使用した遠隔操作を行うためのパッケージをインストールします。
 
@@ -111,7 +111,7 @@ $ sudo xboxdrv --silent
 $ roslaunch teleop_twist_joy teleop.launch
 ```
 
-### [Wiiリモコン](#wii-remote)
+### [Wiiリモコン](#Wiiリモコン)
 
 **[リモートPC]** WiiリモコンとリモートPCをBluetooth経由で接続します。
 
@@ -134,11 +134,11 @@ $ rosrun wiimote wiimote_node
 $ rosrun wiimote teleop_wiimote
 ```
 
-### [ヌンチャク](#nunchuk)
+### [ヌンチャク](#ヌンチャク)
 
 (TODO)
 
-### [Androidアプリ](#android-app)
+### [Androidアプリ](#Androidアプリ)
 
 [ROS CONTROL][ros_control]をダウンロードし、アプリを起動します。
 
@@ -149,7 +149,7 @@ ROS_CONTROLアプリに`roscore`を接続したら、`Preferences`の`Topic`タ�
 ジョイスティックトピックでは `/cmd_vel`、レーザースキャントピックでは `/scan` のようにトピック名を変更する必要があります。
 画像トピックでは `/image_raw/compressed`、オドメトリトピックでは `/odom` を使用します。
 
-そして、`rqt_graph`コマンドを使うことで、ノードとトピックの接続状態を確認することができます。
+そして、`rqt_graph`コマンドを使うことで、ノードとトピックの接続状態を確認できます。
 
 
 ![](/assets/images/platform/turtlebot3/example/ros_control_graph.png)

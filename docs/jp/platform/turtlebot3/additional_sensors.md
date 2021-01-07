@@ -20,21 +20,21 @@ page_number: 19
   <h1 id="basic-operation"><a href="#basic-operation">Basic Operation</a></h1>
 <![end dummy Header 1]-->
 
-## [追加センサー](#additional-sensors)
+## [追加センサー](#追加センサー)
 TurtleBot3には、追加センサーを取り付けることができます。ここでは、TurtleBot3のOpenCRで、赤外線、超音波、スイッチなどの追加センサーを使用する方法を例として示しています。
 
 
-### [バンパー](#Bumper)
+### [バンパー](#バンパー)
  * デバイス - [Touch_sensor (TS-10)](http://emanual.robotis.com/docs/en/parts/sensor/ts-10/)
 
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/touch_sensor.png)
 
-(正面)
+（正面）
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/touch_sensor_front.png)
 
-(裏面)
+（裏面）
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/touch_sensor_back.png)
 
@@ -42,8 +42,8 @@ TurtleBot3には、追加センサーを取り付けることができます。�
 
 | デバイス       | ピン             |
 |:-------------|:----------------|
-| Front sensor | ROBOTIS_5-ピン 3 |
-| Back sensor  | ROBOTIS_5-ピン 4 |
+| Front sensor | ROBOTIS_5 - ピン3 |
+| Back sensor  | ROBOTIS_5 - ピン4 |
 
 
 **ヒント :** 他のピンを使用する場合には、[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
@@ -88,7 +88,7 @@ $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/tty
 
 | デバイス    | ピン             |
 |:----------|:----------------|
-| IRセンサ | ROBOTIS_5-PIN 2 |
+| IRセンサー | ROBOTIS_5 - PIN2 |
 
 **ヒント :** 他のピンを使用する場合には、[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
 {: .notice--info}
@@ -119,7 +119,7 @@ $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/tty
 
 
 ### [超音波センサ](#Ultrasonic)
-* デバイス - 超音波センサ (HC-SR04)
+* デバイス - 超音波センサー (HC-SR04)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/sonar.png)
 
@@ -129,7 +129,7 @@ $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/tty
 
 | デバイス  | ピン          |
 |:--------|:-------------|
-| トリガ | BDPIN_GPIO_1 |
+| トリガー | BDPIN_GPIO_1 |
 | エコー    | BDPIN_GPIO_2 |
 
 **ヒント :** 他のピンを使用する場合には[OpenCR PIN Map](http://emanual.robotis.com/docs/en/parts/controller/opencr10/)を参照してください。
@@ -158,7 +158,7 @@ $ rosrun rosserial_python serial_node.py __name:=turtlebot3_core _port:=/dev/tty
 ```
 
 
-### [イルミネーション](#Illumination)
+### [イルミネーション](#イルミネーション)
 *  デバイス - LDR sensor (Flying-Fish MH-sensor)
 
 ![](/assets/images/platform/turtlebot3/additional_sensors/illumination.png)

@@ -1,6 +1,6 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: basic_operation
 read_time: true
 share: true
@@ -15,28 +15,28 @@ page_number: 15
 
 <div style="counter-reset: h1 7"></div>
 
-# [[ROS 1] Basic Operation](#ros-1-basic-operation)
+# [[ROS 1] 基本操作](#ros-1-基本操作)
 
 {% capture notice_02 %}
 {% include en/platform/turtlebot3/ros_book_info.md %}
 {% endcapture %}
 <div class="notice--success">{{ notice_02 | markdownify }}</div>
 
-## [Topic Monitor](#topic-monitor)
-- [Topic Monitor][topic_monitor]：RQTのTopic Monitorプラグインを使用して、TurtleBot3の全トピックを表示します。
+## [トピックモニター](#トピックモニター)
+- [トピックモニター][topic_monitor]：RQTのTopic Monitorプラグインを使用して、TurtleBot3の全トピックを表示します。
 
 ## [遠隔操作](#teleoperation)
-- [遠隔操作][teleoperation]：PS3、XBOX 360、ROBOTIS RC100などの無線機器を使ってTurtleBot3を遠隔操作します。
+- [遠隔操作][teleoperation]：PS3、Xbox360、ROBOTIS RC100などの無線機器を使ってTurtleBot3を遠隔操作します。
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/Z4s18hlazb4" frameborder="0" allowfullscreen></iframe>
 
-## [基本例](#basic-examples)
-- [基本例][basic_examples]：基本的な例には、以下に示すような様々なコンテンツがあります。
+## [基本的な例](#基本的な例)
+- [基本的な例][basic_examples]：基本的な例には、以下に示すような様々なコンテンツがあります。
 
-  - RViz上でのインタラクティブマーカを使った移動
-  - LDSを使った移動と停止
-  - ゴール位置までの移動
-  - カスタム経路を移動
+  - RViz上でのインタラクティブマーカーを使った移動。
+  - LDSを使った移動と停止。
+  - ゴール位置までの移動。
+  - カスタム経路を移動。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Xg1pKFQY5p4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -44,7 +44,7 @@ e-Manualの内容は、予告なしで更新される場合があります。そ
 
 {: .notice--warning}
 
-## [センサの追加](#additional-sensors)
+## [センサの追加](#センサの追加)
 - [センサの追加][additional_sensors]：IRセンサ、超音波センサ、スイッチ等をTurtleBot3のOpenCRで使いましょう。
 
 [topic_monitor]: /docs/en/platform/turtlebot3/topic_monitor/

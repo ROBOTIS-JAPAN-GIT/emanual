@@ -22,13 +22,13 @@ page_number: 18
 
 ## [基本的な例](#basic-examples)
 
-**警告**: この例を実行する前に必ず[Bringup][bringup]コマンドを実行し、テーブルの上でテストをする場合にはロボットが落下する可能性があるため注意してください。
+**警告**: この例を実行する前に必ず[Bringup][bringup]コマンドを実行し、テーブルの上でテストをする場合にロボットが落下する可能性があるため注意してください。
 {: .notice--warning}
 
 {% capture notice_01 %}
 **注釈**:
 - このコマンドは`Ubuntu 16.04` と `ROS Kinetic Kame` で動作確認をしました。
-- このコマンドはリモートPC上で実行されることを前提としています。使用している **リモートPC** の指示に従ってください。
+- このコマンドはリモートPC上で実行されることを前提としています。使用している **リモートPC** の指示にしたがってください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
@@ -71,7 +71,7 @@ $ rosrun rviz rviz -d `rospack find turtlebot3_example`/rviz/turtlebot3_interact
 
 ### [障害物検知](#obstacle-detection)
 
-TurtleBot3は、LDSのデータによって移動・停止することができます。TurtleBot3が移動している際に、前方の障害物を検知した場合は停止します。
+TurtleBot3は、LDSのデータによって移動・停止できます。TurtleBot3が移動している際に、前方の障害物を検知した場合は停止します。
 
 **[リモートPC]** obstacle fileを起動します。
 ``` bash
@@ -80,7 +80,7 @@ $ roslaunch turtlebot3_example turtlebot3_obstacle.launch
 
 ### [座標指令](#point-operation)
 
-TurtleBot3は、2次元上の`点(x, y)`と`z-angular`で移動することができる。例えば、(0.5, 0.3, 60)を入れると、TurtleBot3は点(x = 0.5m, y = 0.3m)に移動し、60度回転します。
+TurtleBot3は、2次元上の`点(x, y)`と`z-angular`で移動することができる。たとえば、(0.5, 0.3, 60)を入れると、TurtleBot3は点（x = 0.5m, y = 0.3m）に移動し、60度回転します。
 
 **[リモートPC]** pointop fileを起動します。
 ``` bash
@@ -89,7 +89,7 @@ $ roslaunch turtlebot3_example turtlebot3_pointop_key.launch
 
 ### [パトロール](#patrol)
 
-TurtleBot3はカスタムルートを使って移動することができます。ルートは、長方形、三角形、円の3種類があります。この例では、action topicを使用しています。Action clientは、パトロールデータ(モード、エリア、カウント)をaction serverに転送します。action clientはパトロールデータ(mode, area, count)をaction serverに転送し、アクションサーバは `cmd_vel` をTurtleBot3に転送します。詳しい使い方は上記の[tutorial video][tutorial_video]を参照してください。
+TurtleBot3はカスタムルートを使って移動できます。ルートは、長方形、三角形、円の3種類があります。この例では、action topicを使用しています。Action clientは、パトロールデータ（モード、エリア、カウント）をaction serverに転送します。action clientはパトロールデータ（mode, area, count）をaction serverに転送し、アクションサーバは `cmd_vel` をTurtleBot3に転送します。詳しい使い方は上記の[tutorial video][tutorial_video]を参照してください。
 
 **[リモートPC]** patrol server fileを起動します。
 ``` bash

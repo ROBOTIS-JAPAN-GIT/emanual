@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: slam
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/slam/
+permalink: /docs/jp/platform/turtlebot3/slam/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -17,30 +17,30 @@ page_number: 20
 
 # [[ROS 1] SLAM](#ros-1-slam)
 
-**WARNING**: Be careful when running the robot on the table as the robot might fall.
+**警告**: テーブルの上でロボットを動かすときは、ロボットが落下する可能性があるので注意してください。
 {: .notice--warning}
 
 {% capture notice_01 %}
-**NOTE**: 
-- This instructions were tested on `Ubuntu 16.04` and `ROS Kinetic Kame`.
-- This instructions are supposed to be running on the remote PC. Please run the instructions below on your **Remote PC**.
-- The terminal application can be found with the Ubuntu search icon on the top left corner of the screen. The shortcut key for running the terminal is `Ctrl`-`Alt`-`T`.
-- Make sure to run the [Bringup](/docs/en/platform/turtlebot3/bringup/#bringup) instruction before use of the instruction.
+**注釈**:
+- このコマンドは `Ubuntu 16.04` と `ROS Kinetic Kame` でテストをしました。
+- この例は、リモートPCでの動作を想定しています。**リモートPC** の指示にしたがってください。
+- ターミナルアプリケーションは、画面左上のUbuntuの検索アイコンで見つけることができます。ターミナルのショートカットキーは `Ctrl`-`Alt`-`T` です。
+- コマンドを使用する前に、必ず[Bringup](/docs/jp/platform/turtlebot3/bringup/#bringup)の指示を実行してください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
 {% capture notice_02 %}
-{% include en/platform/turtlebot3/ros_book_info.md %}
+{% include jp/platform/turtlebot3/ros_book_info.md %}
 {% endcapture %}
 <div class="notice--success">{{ notice_02 | markdownify }}</div>
 
-**TIP**: It is recommended to use a joystick pad instead of the keyboard for easier control. For more information on remote control, Please refer to [Teleoperation][teleoperation] page.
+**ヒント**: 簡単に制御をするために、キーボードの代わりにジョイパッドを使用することを推奨します。 リモコンの詳細については、[遠隔操作][teleoperation]ページを参照してください。
 {: .notice--success}
 
-The **SLAM (Simultaneous Localization and Mapping)** is a technique to draw a map by estimating current location in an arbitrary space. The SLAM is a well-known feature of TurtleBot from its predecessors. The video here shows you how accurately TurtleBot3 can draw a map with its compact and affordable platform.
+**SLAM（Simultaneous Localization and Mapping）**は、任意の空間の現在位置を推定して地図を描く手法です。 SLAMは、TurtleBotの前身からよく知られている機能です。 ここのビデオでは、TurtleBot3がコンパクトかつ手頃なプラットフォームで地図をどれだけ正確に描くことができるかを示しています。
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/lkW4-dG2BCY" frameborder="0" allowfullscreen></iframe>
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
 * Date: 2016.11.29
@@ -52,7 +52,7 @@ The contents in e-Manual can be updated without a previous notice. Therefore, so
 * Distance: Total 351 meters
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/7mEKrT_cKWI" frameborder="0" allowfullscreen></iframe>
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
 * Date: 2017.04.20
@@ -63,23 +63,23 @@ The contents in e-Manual can be updated without a previous notice. Therefore, so
 * Duration: About 4 minutes
 * Distance: Total 15 meters
 
-## [Run SLAM Nodes](#run-slam-nodes)
+## [SLAMノードの実行](#slamノードの実行)
 
-**[Remote PC]** Run roscore.
+**[リモートPC]** roscoreを実行します。
 
 ``` bash
 $ roscore
 ```
 
-**[TurtleBot]** Bring up basic packages to start TurtleBot3 applications.
+**[TurtleBot]** 基本パッケージを起動し、TurtleBot3のアプリケーションをスタートします。
 
 ``` bash
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
 
-**[Remote PC]** Open a new terminal and launch the SLAM file.
+**[リモートPC]** 新しいターミナルを開き、SLAMファイルを起動します。
 
-**TIP**: Before executing this command, you have to specify the model name of TurtleBot3. The `${TB3_MODEL}` is the name of the model you are using in `burger`, `waffle`, `waffle_pi`. If you want to permanently set the export settings, please refer to [Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup} page.
+**ヒント**: このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。 `$ {TB3_MODEL}`は、 `burger`、` waffle`、 `waffle_pi`で使用しているモデルの名前です。 エクスポート設定を恒久的に設定する場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]を参照してください。{: .popup} page.
 {: .notice--success}
 
 ``` bash
@@ -88,7 +88,7 @@ $ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
 ```
 
 {% capture slam_tip %}
-**TIP**: When you run the above command, the visualization tool RViz is also executed. If you want to run RViz separately, use one of the following commands.
+**ヒント**: 上記のコマンドを実行すると、視覚化ツールRVizも実行されます。 RVizを個別に実行する場合は、次のいずれかのコマンドを使用します。
 
   - $ rviz -d \`rospack find turtlebot3_slam\`/rviz/turtlebot3_gmapping.rviz
   - $ rviz -d \`rospack find turtlebot3_slam\`/rviz/turtlebot3_cartographer.rviz
@@ -101,31 +101,32 @@ $ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
 <div class="notice--info">{{ slam_tip | markdownify }}</div>
 
 {% capture notice_03 %}
-**NOTE**: Support for various SLAM methods
-- TurtleBot3 supports Gmapping, Cartographer, Hector, and Karto among various SLAM methods. You can do this by changing the `slam_methods:=xxxxx` option.
-- The `slam_methods` options include `gmapping`, `cartographer`, `hector`, `karto`, `frontier_exploration`, and you can choose one of them.
-- For example, to use Karto, you can use the following:
+**注釈**: さまざまなSLAMメソッドをサポートしています
+- TurtleBot3は、さまざまなSLAMメソッドの中で、Gmapping、Cartographer、Hector、およびKartoをサポートしています。 これを行うには、 `slam_methods：= xxxxx`オプションを変更します。
+- `slam_methods`オプションには` gmapping`、 `cartographer`、` hector`、 `karto`、` frontier_exploration`が含まれ、それらの1つを選択できます。
+- たとえば、kartoを使用するには、次のようにします:
 - $ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=karto
 {% endcapture %}
 <div class="notice--info">{{ notice_03 | markdownify }}</div>
 
 {% capture notice_04 %}
-**NOTE**: Install dependency packages for SLAM packages
-- For `Gmapping`:
-- Packages related to Gmapping have already been installed on [PC Setup](/docs/en/platform/turtlebot3/pc_setup/#install-dependent-ros-packages) page.
-- For `Cartographer`:
+**注釈**: SLAMパッケージの依存関係パッケージをインストールします
+- `Gmapping`の場合:
+- Gmappingに関連するパッケージは、[PC セットアップ](/docs/jp/platform/turtlebot3/pc_setup/#install-dependent-ros-packages)ページですでにインストールされています。
+- `Cartographer`の場合:
 - sudo apt-get install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
-- For `Hector Mapping`:
+- `Hector Mapping`の場合:
 - sudo apt-get install ros-kinetic-hector-mapping
-- For `Karto`:
+- `Karto`の場合:
 - sudo apt-get install ros-kinetic-slam-karto
-- For `Frontier Exploration`:
-- Frontier Exploration uses gmapping, and the following packages should be installed.
+- `Frontier Exploration`の場合:
+- Frontier Explorationはgmappingを使用しており、次のパッケージをインストールする必要があります。
 - sudo apt-get install ros-kinetic-frontier-exploration ros-kinetic-navigation-stage
 {% endcapture %}
 <div class="notice--info">{{ notice_04 | markdownify }}</div>
 
-**TIP**: We tested on cartographer version 0.3.0. The Cartographer package developed by Google supports 0.3.0 version in ROS Melodic, but 0.2.0 version in ROS Kinetic. So if you need to work on ROS Kinetic, instead of downloading the binaries files, you should download and build the source code as follows. Please refer to [official wiki page](https://google-cartographer-ros.readthedocs.io/en/latest/#building-installation) for more detailed installation instructions.
+
+**ヒント**: cartographerは0.3.0バージョンでテストしました。 Googleが開発したCartographerパッケージは、ROS Melodicでは0.3.0バージョンをサポートしていますが、ROS Kineticでは0.2.0バージョンをサポートしています。 したがって、ROS Kineticで作業する必要がある場合は、バイナリファイルをダウンロードする代わりに、次のようにソースコードをダウンロードしてビルドする必要があります。 インストール手順の詳細については、[公式wikiページ](https://google-cartographer-ros.readthedocs.io/en/latest/#building-installation)を参照してください。
 {: .notice--success}
 
 ```sh
@@ -145,9 +146,10 @@ $ source ~/catkin_ws/install_isolated/setup.bash
 $ roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=cartographer
 ```
 
-## [Run Teleoperation Node](#run-teleoperation-node)
+## [遠隔操作ノードの実行](#遠隔操作ノードの実行)
 
-**[Remote PC]** Open a new terminal and run the teleoperation node. The following command allows the user to control the robot to perform SLAM operation manually. It is important to avoid vigorous movements such as changing the speed too quickly or rotating too fast. When building a map using the robot, the robot should scan every corner of the environment to be measured. It requires some experiences to build a clean map, so let’s practice SLAM multiple times to build up know how. The mapping process is shown in figure below.
+
+**[リモートPC]** 新しい端末を開き、遠隔操作ノードを実行します。 次のコマンドを使用すると、ユーザーはロボットを制御してSLAM操作を手動で実行できます。 速度の変更が速すぎたり、回転が速すぎたりするなどの激しい動きを避けることが重要です。 ロボットを使用して地図を作成する場合、ロボットは測定対象の環境の隅々までスキャンする必要があります。 きれいな地図を作成するにはある程度の経験が必要なので、SLAMを複数回練習してノウハウを作成しましょう。 マッピングプロセスを次の図に示します。
 
 ``` bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
@@ -171,26 +173,26 @@ $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 
 ![](/assets/images/platform/turtlebot3/slam/slam_running_for_mapping.png)
 
-## [Tuning Guide](#tuning-guide)
+## [チューニングガイド](#チューニングガイド)
 
-Gmapping has many parameters to change performances for different environments. You can get an information about whole parameters in [ROS WiKi](http://wiki.ros.org/gmapping) or refer chapter 11 in [ROS Robot Programming](https://community.robotsource.org/t/download-the-ros-robot-programming-book-for-free/51) book.
+Gmappingには、さまざまな環境のパフォーマンスを変更するための多くのパラメーターがあります。 パラメーター全体に関する情報は、[ROS WiKi](http://wiki.ros.org/gmapping)で入手するか、[ROS Robot Programming](https://community.robotsource.org/t/download-the-ros-robot-programming-book-for-free/51)の第11章を参照してください。
 
-This tuning guide give some tips for you to configue important parameters. If you want to change performances depends on your environments, this tips might be help you and save your time.
+このチューニングガイドでは、重要なパラメーターを設定するためのヒントをいくつか紹介します。 環境に応じてパフォーマンスを変更したい場合は、このヒントが役立つ可能性があり、時間を節約できます。
 
 _**maxUrange**_ 
 - `turtlebot3_slam/launch/turtlebot3_gmapping.launch`
-- This param is set the maximum usable range of the lidar sensor.
+- このパラメーターは、LIDARセンサーの最大使用可能範囲を設定します。
 
 _**map_update_interval**_
 - `turtlebot3_slam/launch/turtlebot3_gmapping.launch`
-- How long (in seconds) between updates to the map. If this set low, map would be updated more often. But it requires greater computational load. Set this param depends on your environments.
+- マップの更新間の時間（秒単位）。 これを低く設定すると、マップがより頻繁に更新されます。 ただし、より大きな計算負荷が必要になります。 このパラメーターの設定は、環境によって異なります。
 
 ![](/assets/images/platform/turtlebot3/slam/tuning_map_update_interval.png)
 
 _**minimumScore**_ 
 - `turtlebot3_slam/launch/turtlebot3_gmapping.launch`
-- Minimum score for considering the result of the scan matching. This param makes avoid jumping pose estimates.
-  If this set properly, you can watch below information.
+- スキャンマッチングの結果を考慮するための最小スコア。 このパラメーターにより、ポーズ推定のジャンプを回避できます。
+   これが適切に設定されている場合は、以下の情報を見ることができます。
 
   ```
   Average Scan Matching Score=278.965
@@ -201,7 +203,7 @@ _**minimumScore**_
   Laser Pose= -0.0320253 -5.36882e-06 -3.14142
   ```
 
-  If this set too high, you can watch below warning.
+  この設定が高すぎる場合は、以下の警告が表示されます。
 
   ```
   Scan Matching Failed, using odometry. Likelihood=0
@@ -211,37 +213,37 @@ _**minimumScore**_
 
 _**linearUpdate**_ 
 - `turtlebot3_slam/launch/turtlebot3_gmapping.launch`
-- When robot translates, a scan process each time.
+- ロボットが移動すると、毎回スキャン処理が行われます。
 
 _**angularUpdate**_ 
 - `turtlebot3_slam/launch/turtlebot3_gmapping.launch`
-- When robot rotates, a scan process each time. Setting this to be smaller than linearUpdate is better.
+- ロボットが回転すると、毎回スキャン処理が行われます。 これをlinearUpdateよりも小さく設定することを推奨します。
 
-## [Save Map](#save-map)
+## [地図の保存](#地図の保存)
 
-**[Remote PC]** Now that you have all the work done, let's run the `map_saver` node to create a map file. The map is drawn based on the robot's odometry, tf information, and scan information of the sensor when the robot moves. These data can be seen in the RViz from the previous example video. The created map is saved in the directory in which `map_saver` is runnig. Unless you specify the file name, it is stored as `map.pgm` and `map.yaml` file which contains map information.
+**[リモートPC]** すべての作業が完了したので、`map_saver`ノードを実行してマップファイルを作成します。 マップは、ロボットのオドメトリ、tf情報、およびロボットが移動したときのセンサーのスキャン情報に基づいて描画されます。これらのデータは、前のサンプルビデオのRVizで見ることができます。作成されたマップは、`map_saver`が実行されているディレクトリに保存されます。ファイル名を指定しない限り、マップ情報を含む`map.pgm`および`map.yaml`ファイルとして保存されます。
 
 ``` bash
 $ rosrun map_server map_saver -f ~/map
 ```
 
-The `-f` option refers to the folder and file name where the map file is saved. If `~/map` is used as an option, `map.pgm` and `map.yaml` will be saved in the map folder of user’s home folder `~/` ($HOME directory : `/home/<username>`).
+`-f`オプションは、マップファイルが保存されているフォルダーとファイル名を参照します。`~/map`をオプションとして使用すると、`map.pgm`と `map.yaml`がユーザーのホームフォルダー`~/`（$HOME：`/home/<username>`）のmapフォルダーに保存されます。
 
-## [Map](#map)
+## [地図](#地図)
 
-We will use the two-dimensional `Occupancy Grid Map (OGM)`, which is commonly used in the ROS community. The map obtained from the previous [Save Map](#save-map) section as shown in figure below, **white** is the free area in which the robot can move, **black** is the occupied area in which the robot can not move, and **gray** is the unknown area. This map is used in [Navigation][navigation].
+ROSコミュニティでよく使用されている2次元の `Occupancy Grid Map（OGM）`を使用します。 下の図に示すように、前の[地図の保存](#地図の保存)セクションから取得した地図。**白色**はロボットが移動可能な空き領域、**黒色**はロボットが動作できない占有領域です。**灰色**は未知の領域です。 この地図は[ナビゲーション][ナビゲーション]で使用されます。
 
 ![](/assets/images/platform/turtlebot3/slam/map.png)
 
-The figure below shows the result of creating a large map using TurtleBot3. It took about an hour to create a map with a travel distance of about 350 meters.
+次の図は、TurtleBot3を使用して大きなマップを作成した結果を示しています。 移動距離が約350メートルの地図を作成するのに約1時間かかりました。
 
 ![](/assets/images/platform/turtlebot3/slam/large_map.png)
 
-[navigation]: /docs/en/platform/turtlebot3/navigation/#navigation
-[teleoperation]: /docs/en/platform/turtlebot3/teleoperation/#teleoperation
-[export_turtlebot3_model]: /docs/en/platform/turtlebot3/export_turtlebot3_model
+[ナビゲーション]: /docs/jp/platform/turtlebot3/navigation/#ナビゲーション
+[遠隔操作]: /docs/jp/platform/turtlebot3/teleoperation/#遠隔操作
+[export_turtlebot3_model]: /docs/jp/platform/turtlebot3/export_turtlebot3_model
 
-## [References](#references)
+## [参考文献](#参考文献)
 
 - gmapping
   - [ROS WIKI](http://wiki.ros.org/gmapping), [Github](https://github.com/ros-perception/slam_gmapping)

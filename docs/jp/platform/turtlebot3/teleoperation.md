@@ -20,7 +20,7 @@ page_number: 17
   <h1 id="basic-operation"><a href="#basic-operation">Basic Operation</a></h1>
 <![end dummy Header 1]-->
 
-## [遠隔操作](#ros-teleoperation)
+## [遠隔操作](#遠隔操作)
 
 ![](/assets/images/platform/turtlebot3/software/remote_pc_and_turtlebot.png)
 
@@ -34,7 +34,7 @@ page_number: 17
 **警告**：この例を実行する前に、必ず[Bringup][bringup]コマンドを実行してください。また、テーブルの上でロボットをテストする際には、ロボットが落下してしまう可能性があるため、注意してください。
 {: .notice--warning}
 
-TurtleBot3は、さまざまな機器での遠隔操作が可能です。PS3、 XBOX 360、 ROBOTIS RC100などの無線機器で動作確認をしています。ここで紹介した例（LEAP Motionを除く）は、Raspberry Pi 3のUbuntu mate 16.04上のROSとDYNAMIXELを制御するOpenCRによって起動できます。
+TurtleBot3は、さまざまな機器での遠隔操作が可能です。PS3、 Xbox360、 ROBOTIS RC100などの無線機器で動作確認をしています。ここで紹介した例（LEAP Motionを除く）は、Raspberry Pi 3のUbuntu mate 16.04上のROSとDYNAMIXELを制御するOpenCRによって起動できます。
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/Z4s18hlazb4" frameborder="0" allowfullscreen></iframe>
 
@@ -98,13 +98,13 @@ $ roslaunch teleop_twist_joy teleop.launch
 
 **[リモートPC]** 360ジョイスティックとリモートPCをワイヤレスアダプターまたはUSBケーブルによって接続します。
 
-**[リモートPC]** XBOX 360ジョイスティックを使用した遠隔操作を行うためのパッケージをインストールします。
+**[リモートPC]** Xbox360ジョイスティックを使用した遠隔操作を行うためのパッケージをインストールします。
 
 ``` bash
 $ sudo apt-get install xboxdrv ros-kinetic-joy ros-kinetic-joystick-drivers ros-kinetic-teleop-twist-joy
 ```
 
-**[リモートPC]** XBOX 360ジョイスティック用の遠隔操作パッケージを起動します。
+**[リモートPC]** Xbox360ジョイスティック用の遠隔操作パッケージを起動します。
 
 ``` bash
 $ sudo xboxdrv --silent

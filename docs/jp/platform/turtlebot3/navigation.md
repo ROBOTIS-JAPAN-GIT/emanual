@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: navigation
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/navigation/
+permalink: /docs/jp/platform/turtlebot3/navigation/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -15,18 +15,18 @@ page_number: 21
 
 <div style="counter-reset: h1 9"></div>
 
-# [[ROS 1] Navigation](#ros1-navigation)
+# [[ROS 1] ナビゲーション](#ros1-ナビゲーション)
 
-**WARNING**: Be careful when running the robot on the table as the robot might fall.
+**警告**: テーブルの上でロボットを動かすときは、ロボットが落下する可能性があるので注意してください。
 {: .notice--warning}
 
 {% capture notice_01 %}
-**NOTE**: 
-- This instructions were tested on `Ubuntu 16.04` and `ROS Kinetic Kame`.
-- This instructions are supposed to be running on the remote PC. Please run the instructions below on your **Remote PC**.
-- The terminal application can be found with the Ubuntu search icon on the top left corner of the screen. The shortcut key for running the terminal is `Ctrl`-`Alt`-`T`.
-- Make sure to run the [Bringup](/docs/en/platform/turtlebot3/bringup/#bringup) instructions before use of the instruction
-- The navigation uses the a data created in [SLAM](/docs/en/platform/turtlebot3/slam/#slam). Please make sure to have a map data.
+**注釈**
+- このコマンドは `Ubuntu 16.04` と `ROS Kinetic Kame` でテストをしました。
+- この例は、リモートPCでの動作を想定しています。**リモートPC** の指示にしたがってください。
+- ターミナルアプリケーションは、画面左上のUbuntuの検索アイコンで見つけることができます。ターミナルのショートカットキーは `Ctrl`-`Alt`-`T` です。
+- コマンドを使用する前に、必ず[Bringup](/docs/jp/platform/turtlebot3/bringup/#bringup)の指示を実行してください。
+- ナビゲーションは、[SLAM](/docs/jp/platform/turtlebot3/slam/#slam)で作成されたデータを使用します。 必ず地図データをご用意ください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
@@ -36,27 +36,27 @@ page_number: 21
 <div class="notice--success">{{ notice_02 | markdownify }}</div>
 
 
-**Navigation** is to move the robot from one location to the specified destination in a given environment. For this purpose, a map that contains geometry information of furniture, objects, and walls of the given environment is required. As described in the previous [SLAM][slam] section, the map was created with the distance information obtained by the sensor and the pose information of the robot itself.
+**ナビゲーション** とは、特定の環境でロボットをある場所から指定された目的地に移動することです。この目的のために、特定の環境の家具、オブジェクト、および壁のジオメトリ情報を含むマップが必要です。 前の[SLAM][slam]セクションで説明したように、マップはセンサーによって取得された距離情報とロボット自体のポーズ情報を使用して作成されました。
 
-The navigation enables a robot to move from the current pose to the designated goal pose on the map by using the map, robot's encoder, IMU sensor, and distance sensor. The procedure for performing this task is as follows.
+ナビゲーションにより、ロボットは、マップ、ロボットのエンコーダー、IMUセンサーおよび距離センサーを使用して現在のポーズからマップ上の指定された目標ポーズに移動できます。 このタスクを実行する手順は次のとおりです。
 
-## [Run Navigation Nodes](#run-navigation-nodes)
+## [ナビゲーションノードの実行](#ナビゲーションノードの実行)
 
-**[Remote PC]** Run roscore.
+**[リモートPC]** roscoreを実行する。
 
 ``` bash
 $ roscore
 ```
 
-**[TurtleBot]** Bring up basic packages to start TurtleBot3 applications.
+**[TurtleBot]** 基本パッケージを起動し、TurtleBot3のアプリケーションをスタートします。
 
 ``` bash
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
 
-**[Remote PC]** Launch the navigation file.
+**[リモートPC]** 新しいターミナルを開き、ナビゲーションファイルを起動します。
 
-**TIP**: Before executing this command, you have to specify the model name of TurtleBot3. The `${TB3_MODEL}` is the name of the model you are using in `burger`, `waffle`, `waffle_pi`. If you want to permanently set the export settings, please refer to [Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup} page.
+**ヒント**: このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。 `${TB3_MODEL}`は、 `burger`、`waffle`、 `waffle_pi`で使用しているモデルの名前です。 エクスポート設定を恒久的に設定する場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]を参照してください。{: .popup} page.
 {: .notice--success}
 
 ``` bash
@@ -64,128 +64,128 @@ $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
 ```
 
-**TIP**: When you run the above command, the visualization tool RViz is also executed. If you want to run RViz separately, use the following command.
+**ヒント**: 上記のコマンドを実行すると、視覚化ツールRVizも実行されます。 RVizを個別に実行する場合は、次のコマンドを使用します。
 {: .notice--success}
 
 ``` bash
 $ rviz -d `rospack find turtlebot3_navigation`/rviz/turtlebot3_navigation.rviz
 ```
 
-## [Estimate Initial Pose](#estimate-initial-pose)
+## [初期ポーズを推定する](#初期ポーズを推定する)
 
-**[Remote PC]** First, the initial pose estimation of the robot should be performed. When you press `2D Pose Estimate` in the menu of RViz, a very large green arrow appears. Move it to the pose where the actual robot is located in the given map, and while holding down the left mouse button, drag the green arrow to the direction where the robot's front is facing, follow the instruction below.
+**[リモートPC]** まずロボットの初期姿勢推定を実行する必要があります。 RVizのメニューで`2D Pose Estimate`を押すと、非常に大きな緑色の矢印が表示されます。 所定のマップで実際のロボットが配置されているポーズに移動し、マウスの左ボタンを押したまま緑色の矢印をロボットの正面が向いている方向にドラッグし、以下の手順に従います。
 
-- Click the `2D Pose Estimate` button.
-- Click on the approxtimate point in the map where the TurtleBot3 is located and drag the cursor to indicate the direction where TurtleBot3 faces.
+- `2D Pose Estimate`ボタンを選択します。
+- TurtleBot3が配置されているマップ内のおおよそのポイントをクリックし、カーソルをドラッグしてTurtleBot3が向いている方向を示します。
 
-Then move the robot back and forth with tools like the `turtlebot3_teleop_keyboard` node to collect the surrounding environment information and find out where the robot is currently located on the map. 
+次に、`turtlebot3_teleop_keyboard`ノードなどのツールを使用してロボットを前後に動かし、周囲の環境情報を収集して、ロボットが現在地図上のどこにあるかを調べます。
 
 ``` bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 ```
 
-When this process is completed, the robot estimates its actual position and orientation by using the position and orientation specified by the green arrow as the initial pose. Every green arrow stands for an expected position of TurtleBot3. The laser scanner will draw approximate figures of wall on the map. If the drawing doesn't show the figures incorrectly, repeat localizing the TurtleBot3 from clicking `2D Pose Estimate` button above.
+このプロセスが完了すると、ロボットは緑色の矢印で指定された位置と方向を初期ポーズとして使用して、実際の位置と方向を推定します。 すべての緑色の矢印は、TurtleBot3の予想される位置を表しています。 レーザースキャナーは、地図上に壁のおおよその図を描画します。 図面に図が正しく表示されない場合は、上の`2D Pose Estimate`ボタンをクリックして、TurtleBot3のローカライズを繰り返します。
 
 ![](/assets/images/platform/turtlebot3/navigation/2d_pose_estimate.png)
 
-**TIP**: The `turtlebot3_teleop_keyboard` node used for `Estimate Initial Pose` should be terminated after use. If it does not, the robot will behave strangely because the topic overlaps with the `/cmd_vel` topic from the navigation node of the next step.
+**ヒント**: `Estimate InitialPose`に使用される`turtlebot3_teleop_keyboard`ノードは、使用後に終了する必要があります。 そうしない場合はトピックが次のステップのナビゲーションノードの`/cmd_vel`トピックと重複するため、ロボットは奇妙な動作をします。
 {: .notice--success}
 
-## [Send Navigation Goal](#send-navigation-goal)
+## [ナビゲーション目標の送信](#ナビゲーション目標の送信)
 
-**[Remote PC]** When everything is ready, let's try the move command from the navigation GUI. If you press `2D Nav Goal` in the menu of RViz, a very large green arrow appears. This green arrow is a marker that can specify the destination of the robot. The root of the arrow is the `x` and `y` position of the robot, and the orientation pointed by the arrow is the `theta` direction of the robot. Click this arrow at the position where the robot will move, and drag it to set the orientation like the instruction below.
+**[リモートPC]** すべての準備ができたらナビゲーションGUIからmoveコマンドを試してみましょう。 RVizのメニューで`2D Nav Goal`を押すと、非常に大きな緑色の矢印が表示されます。 この緑色の矢印は、ロボットの宛先を指定できるマーカーです。 矢印のルートはロボットの`x`と`y`の位置であり、矢印が指す方向はロボットの`theta`方向です。 ロボットが移動する位置でこの矢印をクリックし、ドラッグして以下の手順のように方向を設定します。
 
-- Click the `2D Nav Goal` button.
-- Click on a specific point in the map to set a goal position and drag the cursor to the direction where TurtleBot should be facing at the end.
+- `2D Nav Goal`ボタンを選択します。
+- マップ内の特定のポイントをクリックしてゴール位置を設定し、カーソルをTurtleBotが最後に向いている方向にドラッグします。
 
-The robot will create a path to avoid obstacles to its destination based on the map. Then, the robot moves along the path. At this time, even if an obstacle is suddenly detected, the robot moves to the target point avoiding the obstacle.
+ロボットは、地図に基づいて目的地への障害物を回避するためのパスを作成します。 次に、ロボットはパスに沿って移動します。 この時、いきなり障害物を検知しても障害物を避けて目標点に移動します。
 
 ![](/assets/images/platform/turtlebot3/navigation/2d_nav_goal.png)
 
 <iframe width="640" height="360" src="https://www.youtube.com/embed/VYlMywwYALU" frameborder="0" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。 そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
-Setting a goal position might fail if the path to the goal position cannot be created. If you wish to stop the robot before it reaches to the goal position, set the current position of TurtleBot3 as a goal position.
+ゴール位置へのパスを作成できない場合、ゴール位置の設定に失敗することがあります。 ロボットが目標位置に到達する前に停止したい場合は、TurtleBot3の現在の位置を目標位置として設定します。
 
-## [Tuning Guide](#tuning-guide)
+## [チューニングガイド](#チューニングガイド)
 
-Navigation stack has many parameters to change performances for different robots. You can get an information about it in [ROS Wiki](http://wiki.ros.org/navigation) or refer chapter 11 in [ROS Robot Programming](https://community.robotsource.org/t/download-the-ros-robot-programming-book-for-free/51) book.
+ナビゲーションスタックには、さまざまなロボットのパフォーマンスを変更するための多くのパラメーターがあります。 これに関する情報は、[ROS Wiki](http://wiki.ros.org/navigation)で入手するか、[ROS Robot Programming](https://community.robotsource.org/t/download-the-ros-robot-programming-book-for-free/51)の第11章を参照してください。
 
-This tuning guide give some tips for you to configue important parameters. If you want to change performances depends on your environments, this tips might be help you and save your time.
+このチューニングガイドでは、重要なパラメーターを設定するためのヒントをいくつか紹介します。 環境に応じてパフォーマンスを変更したい場合は、このヒントが役立つ可能性があり、チューニングの時間を節約できます。
 
 _**inflation_radius**_
 - `turtlebot3_navigation/param/costmap_common_param_$(model).yaml`
-- This parameter makes inflation area from the obstacle. Path would be planned in order that it don't across this area. It is safe that to set this to be bigger than robot radius. For more information about it please following [page of costmap_2d wiki](http://wiki.ros.org/costmap_2d#Inflation). 
+- このパラメーターは、障害物から膨張領域を作成します。このエリアを越えないようにパスが計画されます。これをロボットの半径よりも大きく設定しても安全です。詳細については、[page of costmap_2d wiki](http://wiki.ros.org/costmap_2d#Inflation)をフォローしてください。
 
 ![](/assets/images/platform/turtlebot3/navigation/tuning_inflation_radius.png)
 
 _**cost_scaling_factor**_ 
 - `turtlebot3_navigation/param/costmap_common_param_$(model).yaml`
-- This factor is multiplied by cost value. Because it is an reciprocal propotion, this parameter is increased, the cost is decreased. 
+- この係数にコスト値を掛けます。相反する比率であるため、このパラメーターが増加し、コストが削減されます。
 
 ![](/assets/images/platform/turtlebot3/navigation/tuning_cost_scaling_factor.png)
 
-  The best path is for the robot to pass through a center of between obstacles. Set this factor to be smaller in order to far from obstacles.
+  最適なパスは、ロボットが障害物間の中心を通過することです。 障害物から遠ざけるために、この係数を小さく設定します。
 
-_**max_vel_x**_ 
+_**max_vel_x**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- This factor is set the maximum value of translational velocity. 
+- この係数は、並進速度の最大値に設定されます。
 
-_**min_vel_x**_ 
+_**min_vel_x**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- This factor is set the minimum value of translational velocity. If set this negative, the robot can move backwards.
+- この係数は、並進速度の最小値に設定されます。 これを負に設定すると、ロボットは後方に移動できます。
 
 _**max_trans_vel**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- Actual value of the maximum translational velocity. The robot can not be faster than this.
+- 最大並進速度の実際の値。 ロボットはこれより速くなることはできません。
 
 _**min_trans_vel**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- Actual value of the minimum translational velocity. The robot can not be slower than this.
+- 最小並進速度の実際の値。 ロボットはこれより遅くなることはできません。
 
 _**max_rot_vel**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- Actual value of the maximum rotational velocity. The robot can not be faster than this.
+- 最小回転速度の実際の値。 ロボットはこれより遅くなることはできません。
 
 _**min_rot_vel**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- Actual value of the minimum rotational velocity. The robot can not be slower than this.
+- 最小回転速度の実際の値。 ロボットはこれより遅くなることはできません。
 
 _**acc_lim_x**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- Actual value of the translational acceleration limit.
+- 並進加速度リミット値の実際の値。
 
 _**acc_lim_theta**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- Actual value of the rotational acceleration limit.
+- 回転加速度リミット値の実際の値。
 
 _**xy_goal_tolerance**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- The x,y distance allowed when the robot reaches its goal pose.
+- ロボットが目標ポーズへの到達時に許可されるx、y距離。
 
 _**yaw_goal_tolerance**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- The yaw angle allowed when the robot reaches its goal pose.
+- ロボットが目標ポーズへの到達時に許容されるヨー角。
 
 _**sim_time**_
 - `turtlebot3_navigation/param/dwa_local_planner_params_$(model).yaml`
-- This factor is set forward simulation in seconds. Too low value is in sufficient time to pass narrow area and too high value is not allowed rapidly rotates. You can watch defferences of length of the yellow line in below image.
+- この係数は、シミュレーションを秒単位で転送します。値が小さすぎると狭い領域を通過するのに十分な時間であり、値が大きすぎると急速に回転することはできません。 下の画像で黄色い線の長さの違いを見ることができます。
 
 ![](/assets/images/platform/turtlebot3/navigation/tuning_sim_time.png)
 
-**References**
+**参考文献**
 
-- [Basic Navigation Tuning Guide (ROS Wiki)](http://wiki.ros.org/navigation/Tutorials/Navigation%20Tuning%20Guide)
-- [ROS Navigation Tuning Guide by Kaiyu Zheng](http://kaiyuzheng.me/documents/navguide.pdf)
+- [基本的なナビゲーションチューニングガイド (ROS Wiki)](http://wiki.ros.org/navigation/Tutorials/Navigation%20Tuning%20Guide)
+- [Kaiyu ZhengによるROSナビゲーションチューニングガイド](http://kaiyuzheng.me/documents/navguide.pdf)
 
 [slam]: /docs/en/platform/turtlebot3/slam/
 [export_turtlebot3_model]: /docs/en/platform/turtlebot3/export_turtlebot3_model
 
 
-## [References](#references)
+## [参考文献](#参考文献)
 
-- Navigation
+- ナビゲーション
   - [ROS WIKI](http://wiki.ros.org/navigation), [Github](https://github.com/ros-planning/navigation)

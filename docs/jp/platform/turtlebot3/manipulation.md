@@ -1,11 +1,11 @@
 ---
 layout: archive
-lang: en
+lang: jp
 ref: manipulation
 read_time: true
 share: true
 author_profile: false
-permalink: /docs/en/platform/turtlebot3/manipulation/
+permalink: /docs/jp/platform/turtlebot3/manipulation/
 sidebar:
   title: TurtleBot3
   nav: "turtlebot3"
@@ -15,16 +15,17 @@ page_number: 23
 
 <div style="counter-reset: h1 11"></div>
 
-# [[ROS 1] Manipulation](#ros-1-manipulation)
+# [[ROS 1] マニピュレーション](#ros-1-マニピュレーション)
 
 {% capture notice_01 %}
-**NOTE**:
-- This instructions were tested on `Ubuntu 16.04` and `ROS Kinetic Kame`.
-- If you want more specfic information about OpenMANIPULATOR, please refer to the [OpenMANIPULATOR e-Manual](/docs/en/platform/openmanipulator/).
+**注釈**:
+- このコマンドは `Ubuntu 16.04` と `ROS Kinetic Kame` でテストをしました。
+- OpenMANIPULATORの詳細については、[OpenMANIPULATOR e-Manual](/docs/en/platform/openmanipulator/)を参照してください。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。そのため、一部の動画はe-Manualの内容と異なる場合があります。
+
 {: .notice--warning} 
 
 {% capture notice_02 %}
@@ -32,16 +33,16 @@ The contents in e-Manual can be updated without a previous notice. Therefore, so
 {% endcapture %}
 <div class="notice--success">{{ notice_02 | markdownify }}</div>
 
-**TIP**: The terminal application can be found with the Ubuntu search icon on the top left corner of the screen. The shortcut key for running the terminal is `Ctrl`-`Alt`-`T`.
+**ヒント**: ターミナルアプリは、画面左上のUbuntu検索アイコンで見つけることができます。ターミナルのショートカットキーは、`Ctrl`-`Alt`-`T`です。
 {: .notice--success}
 
 ## [TurtleBot3 with OpenMANIPULATOR](#turtlebot3-with-openmanipulator)
 
 ![](/assets/images/platform/turtlebot3/manipulation/tb3_with_opm_logo.png)
 
-The OpenMANIPULATOR by ROBOTIS is one of the manipulators that support ROS, and has the advantage of being able to easily manufacture at a low cost by using DYNAMIXEL actuators with 3D printed parts.
+ROBOTIS社のOpenMANIPULATORは、ROSをサポートするマニピュレーターの1つであり、3Dプリント部品を備えたDYNAMIXELアクチュエーターを使用することで、低コストかつ簡単に製造できるという利点があります。
 
-The OpenMANIPULATOR has the advantage of being compatible with TurtleBot3 Waffle and Waffle Pi. Through this compatibility can compensate for the lack of freedom and can have greater completeness as a service robot with the the SLAM and Navigation capabilities that the TurtleBot3 has. TurtleBot3 and OpenMANIPULATOR can be used as a `mobile manipulator` and can do things like the following videos.
+OpenMANIPULATORには、TurtleBot3 WaffleおよびWaffle Piと互換性があるという利点があります。この互換性により自由の欠如を補い、TurtleBot3が持つSLAMおよびナビゲーション機能を備えたサービスロボットとしての完全性を高めることができます。TurtleBot3とOpenMANIPULATORは`モバイルマニピュレータ`として使用でき、次のビデオのようなことを行うことができます。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Qhvk5cnX2hM" frameborder="0" allowfullscreen></iframe>
 
@@ -49,17 +50,17 @@ The OpenMANIPULATOR has the advantage of being compatible with TurtleBot3 Waffle
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DLOq8yNcCoE" frameborder="0" allowfullscreen></iframe>
 
-The contents in e-Manual can be updated without a previous notice. Therefore, some video may differ from the contents in e-Manual.
+e-Manualの内容は、予告なしに更新される場合があります。そのため、一部の動画はe-Manualの内容と異なる場合があります。
 {: .notice--warning} 
 
-## [Software Setup](#software-setup)
+## [ソフトウェアセットアップ](#ソフトウェアセットアップ)
 
-**NOTE**: Before you install `open_manipulator_with_tb3` packages, please make sure `turtlebot3` and `open_manipulator` packages have been installed previously in RemotePC and setup [Raspberry Pi 3](/docs/en/platform/turtlebot3/raspberry_pi_3_setup/#raspberry-pi-3-setup).
+**注釈**: `open_manipulator_with_tb3`パッケージをインストールする前に、事前に`turtlebot3`および`open_manipulator`パッケージがRemotePCにインストールされ、セットアップ済みなことを確認してください。[Raspberry Pi 3](/docs/en/platform/turtlebot3/raspberry_pi_3_setup/#raspberry-pi-3-setup).
 {: .notice--info}
 
-- Install dependent packages for the OpenMANIPULATOR with TurtleBot3.
+- OpenMANIPULATOR with TurtleBot3の依存パッケージをインストールします。
 
-**[Remote PC]**
+**[リモートPC]**
 ```bash
 $ cd ~/catkin_ws/src/
 $ git clone https://github.com/ROBOTIS-GIT/open_manipulator_with_tb3.git
@@ -70,12 +71,12 @@ $ sudo apt-get install ros-kinetic-smach* ros-kinetic-ar-track-alvar ros-kinetic
 $ cd ~/catkin_ws && catkin_make
 ```
 
-- If `catkin_make` command is completed without any errors, the preparation for OpenMANIPULATOR is done. Then load a TurtleBot3 Waffle or Waffle Pi with OpenMANIPULATOR on RViz.
+- `catkin_make`コマンドがエラーなしで完了すると、OpenMANIPULATORの準備が完了します。次に、RVizにOpenMANIPULATOR with TurtleBot3 WaffleまたはWaffle Piをロードします。
 
-**TIP**: Before executing this command, you have to specify the model name of TurtleBot3. The `${TB3_MODEL}` is the name of the model you are using in `waffle`, `waffle_pi`. If you want to permanently set the export settings, please refer to [Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup} page.
+**ヒント**: このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。 `${TB3_MODEL}`は、 `waffle`、`waffle_pi`で使用しているモデルの名前です。 エクスポート設定を永続的に設定する場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]を参照してください。{: .popup} page.
 {: .notice--success}
 
-**[RemotePC]**
+**[リモートPC]**
 ```bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ roslaunch open_manipulator_with_tb3_description open_manipulator_with_tb3_rviz.launch
@@ -83,33 +84,33 @@ $ roslaunch open_manipulator_with_tb3_description open_manipulator_with_tb3_rviz
 
 ![](/assets/images/platform/turtlebot3/manipulation/TurtleBot3_with_Open_Manipulator.png)
 
-## [Hardware Setup](#hardware-setup)
+## [ハードウェアセットアップ](#hardware-setup)
 
-- [CAD files](http://www.robotis.com/service/download.php?no=767) (TurtleBot3 Waffle Pi + OpenMANIPULATOR)
+- [CADファイル](http://www.robotis.com/service/download.php?no=767) (TurtleBot3 Waffle Pi + OpenMANIPULATOR)
 
 ![](/assets/images/platform/turtlebot3/manipulation/hardware_setup.png)
 
-- First, detach lidar sensor and shift it front of TurtleBot3 (Red circle represents position of bolts).
-- Second, attach OpenMANIPULATOR on the TurtleBot3 (Yellow circle represents position of bolts).
+- まず、LIDARセンサーを取り外し、TurtleBot3の前に移動します（赤い円はボルトの位置を表します）。
+- 次に、OpenMANIPULATORをTurtleBot3に取り付けます（黄色の円はボルトの位置を表します）。
 
 ![](/assets/images/platform/turtlebot3/manipulation/assemble_points.png)
 
 ![](/assets/images/platform/turtlebot3/manipulation/assemble.png)
 
-## [OpenCR Setup](#opencr-setup)
+## [OpenCR セットアップ](#opencr-setup)
 
 {% capture notice_01 %}
-**NOTE**: You can choose one of methods for uploading firmware. But we highly recommend to use **shell script**. If you need to modify TurtleBot3's firmware, you can use the second method.
-- Method #1: [**Shell Script**](#shell-script), upload the pre-built binary file using the shell script.
-- Method #2: [**Arduino IDE**](#arduino-ide), build the provided source code and upload the generated binary file using the Arduino IDE.
+**注釈**: ファームウェアのアップロード方法の1つを選択できます。 ただし、**シェルスクリプト**を使用することを強く推奨します。 TurtleBot3のファームウェアを変更する必要がある場合は、2番目の方法を使用できます。
+- 方法 #1: [**シェルスクリプト**](#シェルスクリプト)、 シェルスクリプトを使用して、ビルド済みのバイナリファイルをアップロードします。
+- 方法 #2: [**Arduino IDE**](#arduino-ide), 提供されたソースコードをビルドし、ArduinoIDEを使用して生成されたバイナリファイルをアップロードします。
 {% endcapture %}
 <div class="notice--info">{{ notice_01 | markdownify }}</div>
 
-**WARNING** : **MAKE SURE THAT ALL DYNAMIXEL IS CONNECTED TO OpenCR**, before proceeding to OpenCR Setup. Otherwise, the raspberry pi board may have **an unexpected issue**. 
+**警告** : **OpenCRのセットアップへ進む前に、すべてのDYNAMIXELがOpenCRに接続されていることを確認してください**。 そうしないと場合、ラズベリーパイボードに**予期しない問題**が発生する可能性があります。
 {: .notice--warning}
 
 
-### [Shell Script](#shell-script)
+### [シェルスクリプト](#シェルスクリプト)
 **[TurtleBot3]**
 ```bash
 $ export OPENCR_PORT=/dev/ttyACM0
@@ -118,77 +119,77 @@ $ rm -rf ./opencr_update.tar.bz2
 $ wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS1/latest/opencr_update.tar.bz2 && tar -xvf opencr_update.tar.bz2 && cd ./opencr_update && ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr && cd ..
 ```
 
-When firmware upload is completed, `jump_to_fw` text string will be printed on the terminal.
+ファームウェアのアップロードが完了すると、`jump_to_fw`というテキスト文字列が端末に出力されます。
 
 ### [Arduino IDE](#arduino-ide)
-**[Remote PC]**
-- Before you following step, please setup Arduino IDE.
+**[リモートPC]**
+- 手順を実行する前に、ArduinoIDEをセットアップしてください。
 
-- [Arduino IDE for using OpenCR](/docs/en/parts/controller/opencr10/#arduino-ide)
+- [OpenCRを使用するためのArduinoIDE](/docs/en/parts/controller/opencr10/#arduino-ide)
 
-- OpenCR firmware (or the source) for TurtleBot3 with OpenMANIPULATOR is to control DYNAMIXEL and sensors in the ROS. The firmware is located in OpenCR example which is downloaded by the board manager.
+- OpenMANIPULATOR　with TurtleBot3のOpenCRファームウェア（またはソース）は、ROSでDYNAMIXELとセンサーを制御するためのものです。 ファームウェアは、ボードマネージャーによってダウンロードされるOpenCRの例にあります。
 
-- Go to `File` → `Examples` → `TurtleBot3` → `turtlebot3_with_open_manipulator` → `turtlebot3_with_open_manipulator_core`.
+- `ファイル` → `例` → `TurtleBot3` → `turtlebot3_with_open_manipulator` → `turtlebot3_with_open_manipulator_core`を選択します。
 
 ![](/assets/images/platform/turtlebot3/manipulation/upload_core.png)
 
-- Click `Upload` button to upload the firmware to OpenCR.
+- `アップロード`ボタンを選択すると、ファームウェアをOpenCRへアップロードします。
 
 ![](/assets/images/platform/turtlebot3/manipulation/upload_core_1.png)
 
-**NOTE**: If error occurs while uploading firmware, go to `Tools` → `Port` and check if correct port is selected. Press `Reset` button on the OpenCR and try to upload the firmware again.
+**注釈**: ファームウェアのアップロード中にエラーが発生した場合は、`ツール`→`ポート`に移動し、正しいポートが選択されているかどうかを確認してください。 OpenCRの`リセット`ボタンを押して、ファームウェアのアップロードを再試行してください。
 {: .notice--info}
 
-**TIP**: The DYNAMIXEL ids can be changed in [`open_manipulator_driver.h`][manipulator_id] in turtlebot3_with_open_manipulator folder 
+**ヒント**: DYNAMIXELのIDは、turtlebot3_with_open_manipulatorフォルダーの[`open_manipulator_driver.h`][manipulator_id]で変更できます。
 {: .notice--success}
 
-- When firmware upload is completed, `jump_to_fw` text string will be printed on the screen.
+- ファームウェアのアップロードが完了すると、`jump_to_fw`というテキスト文字列が端末に出力されます。
 
 ## [Bringup](#bringup)
 
-**NOTE**: Please double check the OpenCR usb port name in [turtlebot3_core.launch][turtlebot3_core]
+**注釈**: [turtlebot3_core.launch][turtlebot3_core]のOpenCRのUSBポート名を再確認してください
 {: .notice--info}
 
-**TIP**: Before executing this command, you have to specify the model name of TurtleBot3. The `${TB3_MODEL}` is the name of the model you are using in `waffle`, `waffle_pi`. If you want to permanently set the export settings, please refer to [Export TURTLEBOT3_MODEL][export_turtlebot3_model]{: .popup} page.
+**ヒント**: このコマンドを実行する前に、TurtleBot3のモデル名を指定する必要があります。 `${TB3_MODEL}`は、 `waffle`、`waffle_pi`で使用しているモデルの名前です。 エクスポート設定を永続的に設定する場合は、[Export TURTLEBOT3_MODEL][export_turtlebot3_model]を参照してください。{: .popup} page.
 {: .notice--success}
 
-**[TurtleBot3]** Launch rosserial and lidar node
+**[TurtleBot3]** rosserialとlidarノードを起動します。
 ```bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ ROS_NAMESPACE=om_with_tb3 roslaunch turtlebot3_bringup turtlebot3_robot.launch multi_robot_name:=om_with_tb3 set_lidar_frame_id:=om_with_tb3/base_scan
 ```
 
-**[TurtleBot3]** Launch rpicamera node
+**[TurtleBot3]** rpicameraノードを起動します。
 ```bash
 $ ROS_NAMESPACE=om_with_tb3 roslaunch turtlebot3_bringup turtlebot3_rpicamera.launch
 ```
 
-**[Remote PC]** Launch Launch robot_state_publisher node
+**[Remote PC]** robot_state_publisherノードを起動します。
 ```bash
 $ ROS_NAMESPACE=om_with_tb3 roslaunch open_manipulator_with_tb3_tools om_with_tb3_remote.launch
 ```
 
 ## [SLAM](#slam)
 
-**[Remote PC]** Launch slam node
+**[Remote PC]** slamノードを起動します。
 ```bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ roslaunch open_manipulator_with_tb3_tools slam.launch use_platform:=true
 ```
 
-**[Remote PC]** Launch teleop node
+**[Remote PC]** teleopノードを起動します。
 ```bash
 $ ROS_NAMESPACE=om_with_tb3 roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
 ```
 
-**[Remote PC]** Launch map_saver node
+**[Remote PC]** map_saverノードを起動します。
 ```bash
 $ ROS_NAMESPACE=om_with_tb3 rosrun map_server map_saver -f ~/map
 ```
 
 ![](/assets/images/platform/turtlebot3/manipulation/open_manipulator_slam.png)
 
-## [Navigation](#navigation)
+## [ナビゲーション](#ナビゲーション)
 
 ```bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
@@ -199,7 +200,7 @@ $ roslaunch open_manipulator_with_tb3_tools navigation.launch use_platform:=true
 
 ## [MoveIt!](#moveit)
 
-- In order to run [MoveIt!](https://moveit.ros.org/), open a new terminal window and enter the command below.
+- [MoveIt!](https://moveit.ros.org/)を起動するためには、新しターミナルを開き、以下のコマンドを入力します。
 
   ```bash
   $ export TURTLEBOT3_MODEL=${TB3_MODEL}
@@ -210,13 +211,13 @@ $ roslaunch open_manipulator_with_tb3_tools navigation.launch use_platform:=true
 
   ![](/assets/images/platform/turtlebot3/manipulation/open_manipulator_moveit_sim_2.jpg)
 
-- Below rqt plugins shows example of control OpenMANIPULATOR.
+- 以下のrqtプラグインは、OpenMANIPULATORをコントロールする例を示しています。
 
   ![](/assets/images/platform/turtlebot3/manipulation/joint_position_service.png)
 
   ![](/assets/images/platform/turtlebot3/manipulation/kinematic_position_service.png)
 
-- Get robot status by rosservice messages.
+- rosserviceメッセージでロボットの状態を取得します。
 
 ```bash
 $ rosservice call /arm/moveit/get_joint_position "planning_group: 'arm'" 
@@ -252,7 +253,7 @@ kinematics_pose:
   tolerance: 0.0
 ```
 
-- In order to control gripper(**range is -0.01~0.01**) of OpenMANIPULATOR, below service command might be help.
+- OpenMANIPULATORのグリッパー(**範囲は、-0.01~0.01**)を制御するには、以下のサービスコマンドが役立ちます。
 
 ```bash
 $ rosservice call /om_with_tb3/gripper "planning_group: ''
@@ -269,37 +270,37 @@ path_time: 0.0"
 ![](/assets/images/platform/turtlebot3/manipulation/open_manipulator_gripper.png)
 
 
-## [Pick and Place](#pick-and-place)
+## [ピックアンドプレース](#ピックアンドプレース)
 
-We provide the pick and place example for mobile manipulation. This example is used [smach][smach](task-level architecture) to send action to robot.
+モバイルマニピュレーションのピックアンドプレースの例を提供します。この例では[smach][smach](タスクレベルのアーキテクチャ)を使用してロボットにアクションを送信します。
 
-### Bringup gazebo simulator
+### gazeboシミュレータの起動
 
 ```bash
 $ roslaunch open_manipulator_with_tb3_gazebo rooms.launch use_platform:=false
 ```
 
-### Launch navigation, moveIt!
+### navigation、moveIt!の起動
 
 ```bash
 $ roslaunch open_manipulator_with_tb3_tools rooms.launch use_platform:=false
 ```
 
-### Launch task controller
+### タスクコントローラーの起動
 
 ```bash
 $ roslaunch open_manipulator_with_tb3_tools task_controller.launch 
 ```
-**TIP**: Smach provides state graph. Try to run smach viewer and how to robot can pick and place. `rosrun smach_viewer smach_viewer.py`
+**ヒント**: Smachは状態グラフを提供します。 スマックビューアを実行して、ロボットがピックアンドプレースする方法を試してください。`rosrun smach_viewer smach_viewer.py`
 {: .notice--success}
 
 ![](/assets/images/platform/turtlebot3/manipulation/open_manipulator_pick.png)
 
 ![](/assets/images/platform/turtlebot3/manipulation/open_manipulator_place.png)
 
-## [Simulation](#simulation)
+## [シミュレーション](#simulation)
 
-- Load TurtleBot3 with OpenMANIPULATOR on Gazebo simulator and click `Play` button
+- GazeboシミュレータにTurtleBot3 with OpenMANIPULATORを読み込み、`play`ボタンを選択してください。
 
 ```bash
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
@@ -308,7 +309,7 @@ $ roslaunch open_manipulator_with_tb3_gazebo empty_world.launch
 
 ![](/assets/images/platform/turtlebot3/manipulation/open_manipulator_gazebo_1.png)
 
-- Type `rostopic list` to check which topic is activated.
+- `rostopic list`と入力して、アクティブ化されているトピックを確認します。
 
 ``` bash
 $ rostopic list
@@ -372,7 +373,7 @@ $ rostopic list
 /tf_static
 ```
 
-- OpenMANIPULATOR in Gazebo is controllered by ROS message. For example, to use below command make publish joint position (radian).
+- GazeboのOpenMANIPULATORは、ROSメッセージによって制御されます。 たとえば、以下のコマンドを使用するには、ジョイントポジション（ラジアン）を発行します。
 
 ```bash
 $ rostopic pub /om_with_tb3/joint4_position/command std_msgs/Float64 "data: -0.21" --once
